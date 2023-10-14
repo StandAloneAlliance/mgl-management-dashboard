@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	
+		<title>ErogazioniCorsiAula</title>
+		<link rel="shortcut icon" type="images/x-icon" href="/favicon2.png" />
+				
+		<link rel="stylesheet" type="text/css" href="/theme/EfeiGreen/css/template.css"/><link rel="stylesheet" type="text/css" href="/theme/EfeiGreen/css/../lib/bootstrap-3.3.6/css/bootstrap.min.css"/><link rel="stylesheet" type="text/css" href="/theme/EfeiGreen/css/../icons/font-awesome/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/theme/EfeiGreen/css/select2/select2.css"/><link rel="stylesheet" type="text/css" href="/theme/EfeiGreen/css/custom.css"/><script type="text/javascript" src="/theme/EfeiGreen/js/jquery.min.js"></script><script type="text/javascript" src="/theme/EfeiGreen/js/../lib/bootstrap-3.3.6/js/bootstrap.min.js"></script><script type="text/javascript" src="/theme/EfeiGreen/js/select2/select2.js"></script><script type="text/javascript" src="/theme/EfeiGreen/js/custom.js"></script>		
+		<!--[if lt IE 9]>
+		  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+	
+		<div class="container-fluid" style="background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);">
+	
+			<header class="row">
+				<div class="col-md-12" style="padding: 0px; background: white;">
+											<img src="/img/soggetti-erogatori/195/Logo%20MGL%20Consulring%20276x138.jpg" style="max-width:30%; max-height:110px; margin-top:5px; margin-left: 10px;" alt=""/>										<!-- <img src="/theme/EfeiGreen/img/banner.png" style="height:130px; padding-top: 10px; padding-bottom: 10px; float:right;  margin-top:0px;" /> -->
+										<img src="/img/BARRAATTESTATO.png" style="height:130px; padding-top: 10px; padding-bottom: 10px; float:right;  margin-top:0px;" />
+					
+
+				</div>
+				<nav class="navbar navbar-default col-md-12">
+					<div class="container-fluid">
+<!--
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="scollapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							  <span class="sr-only">Toggle navigation</span>
+							  <span class="icon-bar"></span>
+							  <span class="icon-bar"></span>
+							  <span class="icon-bar"></span>
+							</button>
+						 </div>
+	-->					 
+						<div class="zz_collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav">
+		<li><a href="/SoggettiErogatori/index/idSoggettoErogatore%3A195">Home</a></li>
+
+			<li><a href="/SoggettiErogatori/chiSiamo/195">Chi siamo</a></li>
+		<li><a href="/Pages/corsiOnline">Corsi Online</a></li>
+		<li><a href="/Pages/corsiVideoconferenza">Corsi in Videoconferenza</a></li>
+		<li><a href="/Pages/corsiResidenziali">Corsi Residenziali</a></li>
+		<!--<li><a href="/Pages/corsiEcm">Corsi ECM</a></li>-->
+		<!--<li><a target="_blank" href="http://learning.esafad.it/Utenti/login">Accesso corsista</a></li>-->
+		<li><a target="_blank" href="https://learning.esafad.it/Utenti/login">Accesso corsista</a></li>
+		<li><a href="/SoggettiErogatori/assistenza">Assistenza</a></li>
+		
+	<!--<li><a href="/SoggettiErogatori/assistenzaEcm">Assistenza ECM</a></li>-->
+	<li><a href="/Corsisti/listaScadenza">Scadenziario</a></li>	
+	<li><a href="/Pages/contatti">Contatti</a></li><!--G4n-->
+	</ul>
+						</div><!-- /.navbar-collapse -->
+						 
+					</div>
+				</nav>
+			</header>
+			
+			<div id="content" class="row">
+				<!-- <div class="col-md-2">
+									</div> -->
+				<main class="col-md-9">
+																<h2>Lista corsi in aula Corsi normati</h2>
+										<script type="text/javascript" src="/theme/EfeiGreen/js/ToolbarController.js"></script><script type="text/javascript" src="/theme/EfeiGreen/js/../lib/bootbox/bootbox.js"></script><script type="text/javascript" src="/theme/EfeiGreen/js/../lib/jquery-cookie/jquery.cookie.js"></script>
+
+	<script>
+		var topToolbar = new ToolbarController('topToolbar');
+		var topToolbarActions = {
+			elimina: {
+				httpMethod: 'post',
+				url: '/ErogazioniCorsiAula/eliminaMultipli',
+				ajax: false
+			},
+			annulla: {
+				httpMethod: 'post',
+				url: '/ErogazioniCorsiAula/annullaMultipli',
+				ajax: false
+			},
+		};
+		//bootbox.alert('Si comunica che le fatture di settembre sono disponibili alla voce FATTURE, nel menu di destra.');
+	</script>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="btn-toolbar" role="toolbar">
+					<div class="btn-group" role="group">
+						<a href="/ErogazioniCorsiAula/nuovaRichiestaSvolgimentoCorso/1" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Richiedi corso</a>
+					</div>
+					<div class="btn-group" role="group">
+						<a class="btn btn-default" onclick="if (topToolbar.itemsSelected.length == 0) { bootbox.alert('Non hai selezionato nessun corso.') } else { bootbox.confirm('Sei sicuro di voler eliminare i corsi selezionati?', function(confirmed){ if (confirmed) topToolbar.execute(topToolbarActions.elimina); }) }"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Elimina</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Filtra</div>
+			<div class="panel-body">
+				<div style="padding:10px 0px;">
+					<div class="contenitore-ricerca">
+		<form id="form-ricerca" method="get" action="/ErogazioniCorsiAula/lista/1/conditions%5Bstato%5D:3">
+		<span>Ricerca</span>
+		<input type="text" name="searchvalue" value="" class="form-control">
+		<select name="searchkey" class="form-control">
+							<option value="numero_autorizzazione" >Codice Autorizzazione</option>
+							<option value="CorsoAula.nome" >Corso</option>
+							<option value="Categoria.nome" >Categoria</option>
+							<option value="ErogazioneCorsoAula.indirizzo_sede" >Indirizzo</option>
+							<option value="data_inizio" >Data inizio</option>
+							<option value="data_fine" >Data fine</option>
+					</select>
+		<button class="btn btn-default">Cerca</button>
+	</form>
+</div>
+				</div>
+				<div id="filtri" class="btn-group" role="group">
+<!--
+					<a href="/ErogazioniCorsiAula/lista" class="btn btn-default">Tutti</a>
+-->
+					<a href="/ErogazioniCorsiAula/lista/conditions%5Bstato%5D:1/1" class="btn btn-default">In bozza</a>
+					<a href="/ErogazioniCorsiAula/lista/conditions%5Bstato%5D:2/1" class="btn btn-default">Attesa di autorizzazione</a>
+					<a href="/ErogazioniCorsiAula/lista/conditions%5Bstato%5D:3/1" class="btn btn-primary">Autorizzati</a>
+					<a href="/ErogazioniCorsiAula/lista/conditions%5Brichiesta_modifica%5D:1/1" class="btn btn-default">Richieste di modifica</a>
+					<a href="/ErogazioniCorsiAula/lista/conditions%5Bstato%5D:4/1" class="btn btn-default">Richieste rilascio attestati</a>
+					<a href="/ErogazioniCorsiAula/lista/conditions%5Bstato%5D:5/1" class="btn btn-default">Convalidati</a>
+					<a href="/ErogazioniCorsiAula/lista/conditions%5Bstato%5D:99/1" class="btn btn-default">Annullati</a>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	<div id="inBozza" class="col-md-12 table-container">
+		<div class="panel panel-default">
+			<div class="panel-heading">Autorizzati</div>
+			<div class="panel-body table-responsive">
+				<table class="list-table table dataTable">
+					<thead>
+						<tr>
+							<th><a href="/ErogazioniCorsiAula/lista/1/conditions%5Bstato%5D:3/sort:CorsoAula.nome/direction:asc">Corso aula <span class="arrow-container"><i class="fa fa-arrows-v"></i></span></a></th>
+							<th>Autorizzazione</th>
+							<th>Categoria</th>
+							<th><a href="/ErogazioniCorsiAula/lista/1/conditions%5Bstato%5D:3/sort:indirizzo_sede/direction:asc">Indirizzo sede <span class="arrow-container"><i class="fa fa-arrows-v"></i></span></a></th>
+							<th><a href="/ErogazioniCorsiAula/lista/1/conditions%5Bstato%5D:3/sort:data_inizio/direction:desc" class="asc">Data inizio <span class="arrow-container"><i class="fa fa-arrows-v"></i></span></a></th>
+							<th><a href="/ErogazioniCorsiAula/lista/1/conditions%5Bstato%5D:3/sort:data_fine/direction:asc">Data fine <span class="arrow-container"><i class="fa fa-arrows-v"></i></span></a></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+													<tr onclick="topToolbar.toggleItem(444234); jQuery(this).toggleClass('selected');" class="selectable">
+								<td>Corso di formazione TEORICO/PRATICO per Operatori Addetti alla conduzione di piattaforme di lavoro mobili elevabili (PLE) con stabilizzatori e senza stabilizzatori  (10 ore)</td>
+				<td>CFAL/300972</td>
+
+								<td>D.Lgs. 81/08</td>
+								<td>ROMANA DI ISONZO, VIA ARMENTARESSA, 1</td>
+								<td>24/08/2023</td>
+								<td>25/08/2023</td>
+								<td class="col-action">
+									<!-- START - Scelta delle azioni disponibili in base allo stato -->
+		<div class="input-group-btn">
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Azioni <span class="caret"></span></button>
+			<ul class="dropdown-menu pull-right">
+			<li>
+			<a title="visualizza" href="/ErogazioniCorsiAula/visualizza/444234"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Visualizza</a>
+			</li>
+			<li>
+			<a title="annulla" onclick="bootbox.confirm('Sei sicuro di voler annullare il corso?', function(confirmed){ if (confirmed) jQuery('#annulla444234')[0].click(); });"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Annulla</a>
+			<a id="annulla444234" href="/ErogazioniCorsiAula/annulla/444234"></a>
+			</li>
+			<li>
+			<a title="richiedi modifica" href="/ErogazioniCorsiAula/richiediModificaCorsoInSvolgimento/444234"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Richiedi modifica</a>
+			</li>
+			<li>
+			<a title="richiedi completamento" href="/ErogazioniCorsiAula/richiediCompletamentoCorsoInSvolgimento/444234"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span> Richiedi rilascio attestati</a>
+			</li>
+			<li>
+			<a title="scarica lettera di autorizzazione" href="/ErogazioniCorsiAula/visualizzaLetteraDiAutorizzazione/444234"><span class="glyphicon glyphicon-saved"></span> Lettera di autorizzazione</a>
+			</li>
+		</div>
+			<!-- Tutte le erogazioni -->
+		<!--<div class="input-group-btn">
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Azioni <span class="caret"></span></button>
+			<ul class="dropdown-menu pull-right">
+				<li><a  title="visualizza" href="/ErogazioniCorsiAula/visualizza/444234"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Visualizza</a></li>
+			</ul>
+		</div>-->
+	<!-- END - Scelta delle azioni disponibili in base allo stato -->
+</div>
+								</td>
+							</tr>
+													<tr onclick="topToolbar.toggleItem(444370); jQuery(this).toggleClass('selected');" class="selectable">
+								<td>Corso di formazione per Addetto al Primo Soccorso (Gruppo A)(16 ore)</td>
+				<td>CFAL/301110</td>
+
+								<td>D.Lgs. 81/08</td>
+								<td>LAVELLO (PZ), MGL CONSULTING SRLS, VIA BOLOGNA N. 24</td>
+								<td>28/08/2023</td>
+								<td>29/08/2023</td>
+								<td class="col-action">
+									<!-- START - Scelta delle azioni disponibili in base allo stato -->
+		<div class="input-group-btn">
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Azioni <span class="caret"></span></button>
+			<ul class="dropdown-menu pull-right">
+			<li>
+			<a title="visualizza" href="/ErogazioniCorsiAula/visualizza/444370"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Visualizza</a>
+			</li>
+			<li>
+			<a title="annulla" onclick="bootbox.confirm('Sei sicuro di voler annullare il corso?', function(confirmed){ if (confirmed) jQuery('#annulla444370')[0].click(); });"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Annulla</a>
+			<a id="annulla444370" href="/ErogazioniCorsiAula/annulla/444370"></a>
+			</li>
+			<li>
+			<a title="richiedi modifica" href="/ErogazioniCorsiAula/richiediModificaCorsoInSvolgimento/444370"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Richiedi modifica</a>
+			</li>
+			<li>
+			<a title="richiedi completamento" href="/ErogazioniCorsiAula/richiediCompletamentoCorsoInSvolgimento/444370"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span> Richiedi rilascio attestati</a>
+			</li>
+			<li>
+			<a title="scarica lettera di autorizzazione" href="/ErogazioniCorsiAula/visualizzaLetteraDiAutorizzazione/444370"><span class="glyphicon glyphicon-saved"></span> Lettera di autorizzazione</a>
+			</li>
+		</div>
+			<!-- Tutte le erogazioni -->
+		<!--<div class="input-group-btn">
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Azioni <span class="caret"></span></button>
+			<ul class="dropdown-menu pull-right">
+				<li><a  title="visualizza" href="/ErogazioniCorsiAula/visualizza/444370"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Visualizza</a></li>
+			</ul>
+		</div>-->
+	<!-- END - Scelta delle azioni disponibili in base allo stato -->
+</div>
+								</td>
+							</tr>
+													<tr onclick="topToolbar.toggleItem(444259); jQuery(this).toggleClass('selected');" class="selectable">
+								<td>Corso di formazione antincendio per addetti antincendio in attività di livello 2 ( 8 ore)</td>
+				<td>CFAL/301016</td>
+
+								<td>D.Lgs. 81/08</td>
+								<td>LAVELLO, Via Bologna, 24</td>
+								<td>30/08/2023</td>
+								<td>30/08/2023</td>
+								<td class="col-action">
+									<!-- START - Scelta delle azioni disponibili in base allo stato -->
+		<div class="input-group-btn">
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Azioni <span class="caret"></span></button>
+			<ul class="dropdown-menu pull-right">
+			<li>
+			<a title="visualizza" href="/ErogazioniCorsiAula/visualizza/444259"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Visualizza</a>
+			</li>
+			<li>
+			<a title="annulla" onclick="bootbox.confirm('Sei sicuro di voler annullare il corso?', function(confirmed){ if (confirmed) jQuery('#annulla444259')[0].click(); });"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Annulla</a>
+			<a id="annulla444259" href="/ErogazioniCorsiAula/annulla/444259"></a>
+			</li>
+			<li>
+			<a title="richiedi modifica" href="/ErogazioniCorsiAula/richiediModificaCorsoInSvolgimento/444259"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Richiedi modifica</a>
+			</li>
+			<li>
+			<a title="richiedi completamento" href="/ErogazioniCorsiAula/richiediCompletamentoCorsoInSvolgimento/444259"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span> Richiedi rilascio attestati</a>
+			</li>
+			<li>
+			<a title="scarica lettera di autorizzazione" href="/ErogazioniCorsiAula/visualizzaLetteraDiAutorizzazione/444259"><span class="glyphicon glyphicon-saved"></span> Lettera di autorizzazione</a>
+			</li>
+		</div>
+			<!-- Tutte le erogazioni -->
+		<!--<div class="input-group-btn">
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Azioni <span class="caret"></span></button>
+			<ul class="dropdown-menu pull-right">
+				<li><a  title="visualizza" href="/ErogazioniCorsiAula/visualizza/444259"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Visualizza</a></li>
+			</ul>
+		</div>-->
+	<!-- END - Scelta delle azioni disponibili in base allo stato -->
+</div>
+								</td>
+							</tr>
+													<tr onclick="topToolbar.toggleItem(444373); jQuery(this).toggleClass('selected');" class="selectable">
+								<td>Corso di formazione per R.S.P.P.- Datore di Lavoro in assunzione diretta -  SETTORE RISCHIO MEDIO (COMPLETAMENTO BLENDED ) (24 ORE)</td>
+				<td>CFAL/301112</td>
+
+								<td>D.Lgs. 81/08</td>
+								<td>LAVELLO, Sede teorica: Via Bologna, 24 </td>
+								<td>31/08/2023</td>
+								<td>02/09/2023</td>
+								<td class="col-action">
+									<!-- START - Scelta delle azioni disponibili in base allo stato -->
+		<div class="input-group-btn">
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Azioni <span class="caret"></span></button>
+			<ul class="dropdown-menu pull-right">
+			<li>
+			<a title="visualizza" href="/ErogazioniCorsiAula/visualizza/444373"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Visualizza</a>
+			</li>
+			<li>
+			<a title="annulla" onclick="bootbox.confirm('Sei sicuro di voler annullare il corso?', function(confirmed){ if (confirmed) jQuery('#annulla444373')[0].click(); });"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Annulla</a>
+			<a id="annulla444373" href="/ErogazioniCorsiAula/annulla/444373"></a>
+			</li>
+			<li>
+			<a title="richiedi modifica" href="/ErogazioniCorsiAula/richiediModificaCorsoInSvolgimento/444373"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Richiedi modifica</a>
+			</li>
+			<li>
+			<a title="richiedi completamento" href="/ErogazioniCorsiAula/richiediCompletamentoCorsoInSvolgimento/444373"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span> Richiedi rilascio attestati</a>
+			</li>
+			<li>
+			<a title="scarica lettera di autorizzazione" href="/ErogazioniCorsiAula/visualizzaLetteraDiAutorizzazione/444373"><span class="glyphicon glyphicon-saved"></span> Lettera di autorizzazione</a>
+			</li>
+		</div>
+			<!-- Tutte le erogazioni -->
+		<!--<div class="input-group-btn">
+			<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">Azioni <span class="caret"></span></button>
+			<ul class="dropdown-menu pull-right">
+				<li><a  title="visualizza" href="/ErogazioniCorsiAula/visualizza/444373"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Visualizza</a></li>
+			</ul>
+		</div>-->
+	<!-- END - Scelta delle azioni disponibili in base allo stato -->
+</div>
+								</td>
+							</tr>
+											</tbody>
+				</table>
+				<div class="contenitore-paginazione">
+	<span class="prev"><button class="btn btn-default" disabled="true"><i class="fa fa-arrow-left" disabled=""></i></button></span><span class="next"><button class="btn btn-default" disabled="true"><i class="fa fa-arrow-right"></i></button></span>	<div class="links-pagine">
+			</div>
+</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+	<script>
+		jQuery(function(){
+			bootbox.alert('<iframe src="http://188.165.218.79/materiale_corsi_online/messaggio.html" style="BORDER: 0; width: 100%; height: 400px;"></iframe>');
+		});
+	</script>
+	
+	<script>
+	jQuery(function(){
+		bootbox.alert('<iframe src="http://188.165.218.79/materiale_corsi_online/modifica_password.html" style="BORDER: 0; width: 100%; height: 400px;"></iframe>');
+	});
+	</script>
+	
+			<script>
+			jQuery(function(){
+				bootbox.alert({size: "small", title: "Scadenza Corsi", message:'Ad oggi ci sono <b>'.concat(247).concat('</b> corsi scaduti. <br> Si prega di consultare lo Scadenziario per visualizzarne il dettaglio. <br> <br> Tecnico Piattaforma <br> Giuseppe Currado')});
+			});
+		</script>
+	
+
+
+
+
+
+
+				</main>
+				<div class="col-md-3">
+							<div class="newblock">
+			<div class="title">
+				<h3>Pannello di controllo</h3>
+			</div>
+			<div class="content">
+				<h5 class="user-welcome">Benvenuto <b>Gisondi Domenico</b></h5>
+				<ul>
+				<li>
+					<a href="javascript:void(0);" onclick="jQuery('#sottomenuCorsiAula').slideToggle();">CORSI IN AULA <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
+					<ul id="sottomenuCorsiAula" style="display:none; padding-left: 14px;">
+						<li><a href='/ErogazioniCorsiAula/lista/1' >Corsi normati</a></li><li><a href='/ErogazioniCorsiAula/lista/2' >Corsi non normati</a></li><li><a href='/ErogazioniCorsiAula/lista/3' >Crediti Formativi Professionali</a></li><li><a href='/ErogazioniCorsiAula/lista/4' >ECM</a></li>					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0);" onclick="jQuery('#sottomenuCorsiOnline').slideToggle();">CORSI ONLINE <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
+					<ul id="sottomenuCorsiOnline" style="display:none; padding-left: 14px;">
+						<li><a href='/FruizioniCorsiOnline/lista/1' >Corsi normati</a></li><li><a href='/FruizioniCorsiOnline/lista/2' >Corsi non normati</a></li><li><a href='/FruizioniCorsiOnline/lista/3' >Crediti Formativi Professionali</a></li><li><a href='/FruizioniCorsiOnline/lista/4' >ECM</a></li>					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0);" onclick="jQuery('#sottomenuAnagrafiche').slideToggle();">ANAGRAFICHE <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
+					<ul id="sottomenuAnagrafiche" style="display:none; padding-left: 14px;">
+						<li><a href="/CorsiOnline/lista" >CORSI ONLINE</a></li>
+						<li><a href="/Corsisti/listaConvenzionato" >CORSISTI</a></li>
+						<li><a href="/Personale/listaDirettori">DIRETTORI</a></li>
+						<li><a href="/Personale/listaDocenti">DOCENTI</a></li>
+						<li><a href="/Tutor/lista">TUTOR DI CONTENUTO</a></li>
+						<li><a href="/Mentor/lista">MENTOR</a></li>
+					</ul>
+				</li>
+				<li><a href="/Fatture/listaSoggettoErogatore">FATTURE</a></li>
+				<li><a href="/DownloadFile/listaConvenzionato">AREA DOWNLOAD</a></li>
+			<!--	<li><a href="/DownloadFile/listaConvenzionato">AREA DOWNLOAD</a></li> -->
+				<li><a href="/SoggettiErogatori/impostazioni">IMPOSTAZIONI</a></li>
+				</ul>
+				<a href="/Utenti/logout" class="btn btn-primary">Esci</a>
+			</div>
+		</div>
+		<div class="newblock">
+			<div class="title">
+				<h3>Informazioni</h3>
+			</div>
+			<div class="content">
+				<table>					
+					<tr><td><a href="https://www.accademianazionalecnl.it/"><img class="imgbutton" src="/theme/EfeiGreen/img/button/BOTTONEACCADEMIA.jpg" /></a></td></tr>
+					<tr><td height="15" colspan="2"></td></tr>
+					<tr><td><a href="https://www.cnlgroup.it/"><img class="imgbutton" src="/theme/EfeiGreen/img/button/BOTTONECNLGROU.jpg" /></a></td></tr>
+					<tr><td height="15" colspan="2"></td></tr>					
+					<tr><td><a href="https://www.confederazionecnl.it/"><img class="imgbutton" src="/theme/EfeiGreen/img/button/BOTTONESITOCNL.jpg" /></a></td></tr>
+					<tr><td height="15" colspan="2"></td></tr>
+					<tr><td><a href="https://www.onaspi.it/"><img class="imgbutton" src="/theme/EfeiGreen/img/button/BOTTONESITOONASPI.jpg" /></a></td></tr>
+					<tr><td height="15" colspan="2"></td></tr>
+					<tr><td><a href="https://www.opnitalialavoro.it/"><img class="imgbutton" src="/theme/EfeiGreen/img/button/BOTTONESITOOPN.jpg" /></a></td></tr>
+					<tr><td height="15" colspan="2"></td></tr>
+				</table>
+			</div>
+		</div>
+<!-- 04/07/2018  Nascondere Enti Bilaterali
+  <div class="newblock">
+        <div class="title">
+            <h3>Enti Bilaterali</h3>
+        </div>
+        <div class="content">
+			<table>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/CNEBF.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/EBIAGRI.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/EBITUR.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/EFEI.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ENBLI.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ENBLIA.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ENBLIC.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ENBLIP.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ENBLIS.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ENBLIT.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/EBSAP.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ENBIVISI.png" /></td>
+				</tr>
+
+				<tr><td colspan="2"><hr/></td></tr>
+
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/AFII.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/CDC.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/CEPAA.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/CHRIANS.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/CNEL.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/EFEIECM.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/FIMECO.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ONAS.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/INAL.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/INPS.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/OLS.png" /></td>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ONAPS.png" /></td>
+				</tr>
+				<tr>
+					<td><img class="imgtasti" src="/theme/EfeiGreen/img/loghi/ESAARCO.png" /></td>
+				</tr>
+			</table>
+        </div>
+    </div>
+-->
+				</div>
+			</div>
+			
+		</div>
+		
+		<footer style="font-size: 12px;">
+				<a href="/Pages/informativaPrivacy" style="color:white;">PRIVACY POLICY</a>
+		</footer>
+		
+	</body>
+</html>
+
