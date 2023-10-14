@@ -22,9 +22,7 @@
 
                    <a href="{{ route('admin.courses.index')}}" class="btn btn-primary mt-3">Guarda la pagina dei corsi</a>
                    
-                   <a href="{{ route('admin.clienti.create')}}" class="btn btn-primary mt-3">Aggiungi un cliente</a>
-                   {{-- <a href="{{ route('admin.courses.index')}}">Clicca qua per vedere corsis</a> --}}
-                   {{-- {!! $htmlContent !!} --}}
+
                 </div>
             </div>
             <div class="card mt-3">
