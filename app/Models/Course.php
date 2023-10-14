@@ -24,4 +24,8 @@ class Course extends Model
         'durata_corso'
     ];
     
+    public function clienti()
+    {
+        return $this->belongsToMany(Cliente::class, 'clienti_courses', 'cliente_id', 'course_id');
+    }
 }

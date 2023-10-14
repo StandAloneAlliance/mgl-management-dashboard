@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\PayloadController as PayloadController;
 use App\Http\Controllers\Admin\CourseController as CourseController;
-use App\Http\Controllers\Admin\HTMLScraper as HTMLScraper; 
+use App\Http\Controllers\Admin\HTMLScraper as HTMLScraper;
+use App\Http\Controllers\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,10 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     // se autorizzato e verificato
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
     Route::resource('courses', CourseController::class);
+    Route::resource('clienti', ClienteController::class);
+
     Route::post('/courses',[CourseController::class, 'submit'])->name('submit.form');
     Route::post('/courses/store',[CourseController::class, 'store'])->name('courses.store');
 });
