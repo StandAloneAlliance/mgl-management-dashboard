@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ClienteController extends Controller
 {
@@ -35,7 +36,34 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate the input
+
+        $request->validate([
+            'tipo' => ['required', Rule::in(['azienda', 'persona'])],
+            'ragione_sociale' => [
+                'required_if:tipo,azienda', // this makes it required if the type is azienda
+                'string',
+                'max:100',
+            ], 
+            'nome' => [
+                'required_if:tipo,persona', // this makes it required if the type is azienda
+                'string',
+                'max:50',
+            ],
+            'cognome' => [
+                'required_if:tipo,persona', // this makes it required if the type is azienda
+                'string',
+                'max:50',
+            ]
+
+        ]);
+        dd($request->all()); // To check the submitted data
+
+        //create a new Cliente into the database
+        Cliente::create($request->all());  
+
+        //redirect the user and send success message
+        return redirect()->route('admin.clienti.index')->with('success', 'Cliente aggiunto con successo');
     }
 
     /**

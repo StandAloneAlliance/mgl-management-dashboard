@@ -33,7 +33,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     
     Route::resource('courses', CourseController::class);
     Route::resource('clienti', ClienteController::class);
-
+    Route::post('/clienti',[ClienteController::class, 'submit'])->name('submit.form');
+    Route::post('/clienti/store',[ClienteController::class, 'store'])->name('clienti.store');
+    
     Route::post('/courses',[CourseController::class, 'submit'])->name('submit.form');
     Route::post('/courses/store',[CourseController::class, 'store'])->name('courses.store');
 });

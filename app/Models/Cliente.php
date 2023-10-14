@@ -10,7 +10,7 @@ class Cliente extends Model
         'nome',
         'cognome',
         'ragione_sociale',
-        'tipo_cliente'
+        'tipo'
     ];
 
     public function courses()
