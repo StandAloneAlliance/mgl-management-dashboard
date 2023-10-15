@@ -20,8 +20,9 @@
                         <input type="submit" class="btn btn-primary" value="Fetch data from platform" id="payloadSubmit">
                    </form>
 
-                   <a href="{{ route('admin.courses.index')}}" class="btn btn-primary mt-3">Guarda la pagina dei corsi</a>
+                   {{-- <a href="{{ route('admin.courses.index')}}" class="btn btn-primary mt-3">Guarda la pagina dei corsi</a> --}}
 
+                   <a href="{{ route('admin.customers.index')}}" class="btn btn-primary mt-3">Guarda la pagina dei corsisti</a>
                    {{-- <a href="{{ route('admin.courses.index')}}">Clicca qua per vedere corsis</a> --}}
                    {{-- {!! $htmlContent !!} --}}
                 </div>

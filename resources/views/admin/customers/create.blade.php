@@ -10,9 +10,10 @@
                         <div class="select-courses">
                             <label for="nome_corso">Scegli il tuo corso</label>
                             <select name="nome_corso" class="select2 form-control select2-hidden-accessible">
+                                <option>Seleziona la tipologia di corso</option selected>
                                     @foreach ($types as $key => $type)
                                     {{-- ESEMPIO DI MENU' A TENDINA DA CICLARE CON ARRAY DEI CORSI --}}
-                                    <option value="{{ $key }}">{{ $type }}</option>
+                                    <option name="nome_corso" id="nome_corso" value="{{ $key }}">{{ $type }}</option>
                                 @endforeach
                             </select>  
                         </div>

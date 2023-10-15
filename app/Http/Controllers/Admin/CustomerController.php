@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Course;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 
@@ -15,7 +17,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('admin.customers.index', compact('customers'));
     }
 
     /**
@@ -25,7 +28,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $types = config('courses_type');
+        return view('admin.customers.create', compact('types'));
     }
 
     /**
