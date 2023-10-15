@@ -26,7 +26,7 @@ return new class extends Migration
             $table->date('inizio_di_svolgimento');
             $table->date('fine_svolgimento');
             $table->string('genere_corso', 25);
-            $table->integer('numero_autorizzazione');
+            $table->string('numero_autorizzazione');
             $table->integer('durata_corso');
             $table->timestamps();
         });

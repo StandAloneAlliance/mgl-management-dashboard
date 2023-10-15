@@ -12,6 +12,18 @@ use DOMDocument;
 
 class CourseController extends Controller
 {
+    public function index()
+    {
+        $courses = Course::all();
+        return view('admin.courses.index', compact('courses'));
+    }
+
+    public function create()
+    {
+        $types = config('courses_type');
+        return view('admin.courses.create', compact('types'));
+    }
+
     public $sharedData = [];
 
     public function submit(Request $request)
