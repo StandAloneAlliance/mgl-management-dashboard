@@ -1,5 +1,237 @@
 @import '~bootstrap/scss/bootstrap';
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// SIDEBAR STYLE
+
+:root {
+    --primary-color: #272727;
+    --text: white;
+    --background: #F4F5FC;
+    --sidebar-gray-background: #DCE1EB;
+    --red: #F55E5E;
+    --item-hover: #F0F0F0;
+}
+
+body {
+    background-color: var(--background);
+    padding: 16px;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    min-height: 860px;
+    height: 100%;
+    border-radius: 16px;
+    background-color: var(--primary-color);
+    width: 18rem;
+    padding: 16px 10px;
+    display: flex;
+    color: black;
+    flex-direction: column;
+    background-color: #FCFCFD;
+    transition: all 0.1s ease-in-out;
+}
+
+main {
+    flex: 1;
+    display: flex;
+}
+
+body.collapsed .sidebar {
+    width: 76px;
+}
+
+body.collapsed .hide {
+    position: absolute;
+}
+
+.sidebar-top {
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    height: 64px;
+    padding-bottom: 16px;
+}
+
+body.collapsed .sidebar-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo_wrapper {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    padding: 8px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.logo {
+    height: 42px;
+    overflow: hidden;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.logo-small {
+    height: 42px;
+    overflow: hidden;
+    max-width: 100%;
+    display: none;
+    object-fit: contain;
+}
+
+.collapsed .logo {
+    display: none;
+}
+
+.collapsed .logo-small {
+    display: block;
+}
+
+
+.sidebar-links {
+    padding: 8px 0px;
+    border-top: 1px solid var(--sidebar-gray-background);
+}
+
+.sidebar-links ul {
+    list-style-type: none;
+    position: relative;
+}
+
+.sidebar-links li {
+    color: var(--primary-color);
+}
+
+.sidebar-links li svg {
+    stroke: var(--primary-color);
+    transition: none;
+    width: 28px;
+    height: 28px;
+}
+
+.sidebar-links li a {
+    padding: 12px 12px;
+    margin: 8px 0px;
+    color: var(--sidebar-gray-background);
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 56px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar-links li a img {
+    height: 34px;
+    width: 34px;
+}
+
+.sidebar-links .link {
+    margin-left: 30px;
+}
+
+.sidebar-links .active:hover {
+    background-color: var(--primary-color);
+    color: var(--background);
+}
+
+.sidebar-links .active:hover svg {
+    stroke: var(--background);
+}
+
+.sidebar-links .active {
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: var(--background);
+}
+
+.sidebar-links .active svg {
+    stroke: var(--background);
+}
+
+.sidebar-links li a:hover {
+    background-color: var(--item-hover);
+    color: var(--background);
+}
+
+.sidebar-links li a:hover svg {
+    stroke: var(--primary-color);
+}
+
+body.collapsed .expand-btn {
+    justify-content: center;
+    margin-top: auto;
+}
+
+.expand-btn:hover {
+    background-color: var(--item-hover);
+}
+
+.expand-btn {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    color: var(--primary-color);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.expand-btn img {
+    transform: rotate(180deg);
+    stroke: var(--primary-color);
+    width: 38px;
+    height: 38px;
+}
+
+body.collapsed .expand-btn img {
+    transform: rotate(-360deg);
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltip_content {
+    visibility: hidden;
+    background-color: var(--primary-color);
+    color: var(--text);
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 12px;
+    position: absolute;
+    z-index: -1;
+    left: 75px;
+}
+
+.collapsed .tooltip:hover .tooltip_content {
+    visibility: visible;
+}
+
+// END SIDEBAR
 
 .mgl-logo-img {
     width: 100px;
