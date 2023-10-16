@@ -5,22 +5,31 @@
     <div class="row">
         <div class="col-6 mt-5">
             <a href="{{ route('admin.customers.create')}}" class="btn btn-primary">Aggiungi corsista</a>
-            <div class="table-widget">
-                <table>
-                    <caption>
-                        Corsisti
-                        <span class="table-row-count"></span>
-                    </caption> 
+            <div>
+                <table class="table">
+                    <h3>Corsisti</h3> 
                     <thead>
                         <tr>
                             <th>Nome e Cognome</th>
                             <th>C.F.</th>
-                            <th>Email</th>
 						    <th>Mansione</th>
+                            <th>Azioni</th>
                         </tr>
                     </thead>
-                    <tbody id="team-member-rows">
-                        <!--? rows are generated -->
+                    <tbody >
+                        <tr>
+                        @foreach ($customers as $customer)  
+                            <td>{{ $customer->name }} {{ $customer->surname }}</td>
+                            <td>{{ $customer->cfr }}</td>
+                            <td>{{ $customer->task }}</td>
+                            <td>
+                                <a href="{{ route('admin.customers.show', $customer)}}" class="btn btn-primary">Show</a>
+                                <a href="{{ route('admin.customers.edit', $customer)}}" class="btn btn-primary">Show</a>
+                                <a href="{{ route('admin.customers.destroy', $customer)}}" class="btn btn-primary">Show</a>
+                                <a href="{{ route('admin.courses.assign', $customer)}}" class="btn btn-primary">Show</a>
+                            </td>
+                        @endforeach
+                        </tr>
                     </tbody>
                     <tfoot>
                         <tr>

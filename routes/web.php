@@ -29,8 +29,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     // se autorizzato e verificato
-    Route::resource('customers', CustomerController::class);
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('customers', CustomerController::class);
+    Route::resource('courses', CourseController::class);
+    Route::get('/customer/{id}/assign-courses', [CustomerController::class, 'assignCourses'])->name('courses.assign');
+    Route::post('/customer/{id}/assign-courses', [CustomerController::class, 'storeAssignCourses'])->name('store_courses.assign');
     Route::post('/courses',[CourseController::class, 'submit'])->name('submit.form');
     Route::post('/courses/store',[CourseController::class, 'store'])->name('courses.store');
 });

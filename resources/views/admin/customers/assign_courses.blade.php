@@ -6,21 +6,25 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.customers.store') }}" method="POST" enctype="multipart/form-data" id="createRestaurantForm" class="card shadow bg-body-tertiary p-2">
+                    <form action="{{ route('admin.store_courses.assign',  ['id' => $customer->id]) }}" method="POST" enctype="multipart/form-data" id="createRestaurantForm" class="card shadow bg-body-tertiary p-2">
                         @csrf
                         <!-- Card Header -->
                         <div class="card-header bg-white py-3">
                             <!-- Create Title -->
-                            <h1 class="text-center">Inserisci il Corsista</h1>
+                            <h1 class="text-center">Assegna corsi al corsista {{ $customer->name }} {{ $customer->surname}}</h1>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
                             <!-- Customer Name Form Group -->
-                            <div class="form-group my-4">
+                            <div class="form-group my-4 d-flex flex-column">
                                 <!-- Name Label -->
-                                <label class="control-label my-2">Nome *</label>
+                                <label class="control-label my-2">Seleziona il corso *</label>
                                 <!-- Name Input Text -->
-                                <input type="text" name="name" id="name" placeholder="Inserisci il nome del corsista" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" maxlength="60" required>
+                                <select name="courses[]" multiple class="w-75">
+                                    @foreach ($courses as $course)
+                                        <option name="nome_corso">{{ $course }}</option>
+                                    @endforeach
+                                </select>
                                 <!-- Name Error Text -->
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>

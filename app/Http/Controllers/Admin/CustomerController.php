@@ -7,6 +7,8 @@ use App\Models\Customer;
 use App\Models\Course;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
@@ -114,5 +116,21 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    public function assignCourses($id)
+    {
+        $customer = Customer::find($id);
+        $courses = config('courses_type');
+        
+        return view('admin.customers.assign_courses', compact('customer', 'courses'));
+    }
+
+    public function storeAssignCourses(StoreCourseRequest $request, $id)
+    {
+        $customer = Customer::find($id);
+        $customer->corsi()->sync($request->input('corsi')); // Assumendo che la select abbia un attributo 'name' di 'corsi[]'
+
+        return redirect()->route('admin.customers.index')->with('success', 'Corsi assegnati con successo');
     }
 }
