@@ -19,7 +19,6 @@
 
 body {
     background-color: var(--background);
-    padding: 16px;
     height: 100%;
 }
 
@@ -33,12 +32,10 @@ html {
     left: 0;
     min-height: 860px;
     height: 100%;
-    border-radius: 16px;
-    background-color: var(--primary-color);
     width: 18rem;
     padding: 16px 10px;
     display: flex;
-    color: black;
+    color: white;
     flex-direction: column;
     background-color: #FCFCFD;
     transition: all 0.1s ease-in-out;
@@ -55,67 +52,17 @@ body.collapsed .sidebar {
 
 body.collapsed .hide {
     position: absolute;
-}
-
-.sidebar-top {
-    position: relative;
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    flex-direction: column;
-    height: 64px;
-    padding-bottom: 16px;
-}
-
-body.collapsed .sidebar-top {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.logo_wrapper {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 20px;
-    padding: 8px;
-    color: white;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-}
-
-.logo {
-    height: 42px;
-    overflow: hidden;
-    max-width: 100%;
-    object-fit: contain;
-}
-
-.logo-small {
-    height: 42px;
-    overflow: hidden;
-    max-width: 100%;
-    display: none;
-    object-fit: contain;
-}
-
-.collapsed .logo {
     display: none;
 }
-
-.collapsed .logo-small {
-    display: block;
-}
-
 
 .sidebar-links {
     padding: 8px 0px;
-    border-top: 1px solid var(--sidebar-gray-background);
 }
 
 .sidebar-links ul {
     list-style-type: none;
     position: relative;
+    padding-left: 0;
 }
 
 .sidebar-links li {
@@ -132,7 +79,7 @@ body.collapsed .sidebar-top {
 .sidebar-links li a {
     padding: 12px 12px;
     margin: 8px 0px;
-    color: var(--sidebar-gray-background);
+    color: var(--primary-color);
     font-size: 1.25rem;
     display: flex;
     justify-content: start;
@@ -172,7 +119,7 @@ body.collapsed .sidebar-top {
 }
 
 .sidebar-links li a:hover {
-    background-color: var(--item-hover);
+    background-color: var(--sidebar-gray-background);
     color: var(--background);
 }
 
@@ -211,11 +158,15 @@ body.collapsed .expand-btn img {
     transform: rotate(-360deg);
 }
 
-.tooltip {
+body.collapsed .expand-btn .show {
+    position: absolute;
+}
+
+.tool {
     position: relative;
 }
 
-.tooltip .tooltip_content {
+.tool .tooltip_content {
     visibility: hidden;
     background-color: var(--primary-color);
     color: var(--text);
@@ -227,8 +178,8 @@ body.collapsed .expand-btn img {
     left: 75px;
 }
 
-.collapsed .tooltip:hover .tooltip_content {
-    visibility: visible;
+.collapsed .tooltip_content {
+    display: none;
 }
 
 // END SIDEBAR

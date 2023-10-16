@@ -23,13 +23,7 @@
     <div id="app">
         
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <div class="logo_laravel">
-                    </div>
-                    {{-- config('app.name', 'Laravel') --}}
-                </a>
-
+            <div class="container px-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -37,11 +31,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <img class="mgl-logo-img mr-4" src="{{ Vite::asset('resources/images/cropped-logo-big.png')}}" alt="">
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                        <li class="nav-item me-auto">
+                            <a class="nav-link" href="{{url('/') }}">
+                                <img class="mgl-logo-img mr-4" src="{{ Vite::asset('resources/images/cropped-logo-big.png')}}" alt="">
+                            </a>
                         </li>
                     </ul>
 
@@ -83,6 +76,7 @@
         </nav>
 
         <main>
+            @include('partials.sidebar')
             @yield('content')
         </main>
     </div>

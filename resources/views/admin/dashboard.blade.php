@@ -4,34 +4,6 @@
 <div class="spinner-overlay" id="spinnerOverlay">
     <div class="spinner"></div>
 </div>
-
-<nav class="sidebar">
-    <div class="sidebar-top">
-        <a href="#" class="logo_wrapper">
-            Inserisci Immagine
-        </a>
-    </div>
-
-    <div class="sidebar-links">
-        <ul>
-            <li>
-                <a href="{{ route('admin.customers.index')}}" title="Corsisti" class="tooltip">
-                    <img src="{{ asset('images/customer.svg') }}" alt="">
-                    <span class="link hide">Home</span>
-                    <span class="tooltip_content">Home</span>
-                </a>
-            </li>
-            {{-- other sidebar links --}}
-        </ul>
-    </div>
-    <div class="expand-btn">
-        {{-- insert image --}}
-        <span class="hide">
-            Collapse
-        </span>
-    </div>
-</nav>
-
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">
         MGL Management Dashboard
@@ -42,16 +14,10 @@
                 <div class="card-header">Course Fetcher</div>
 
                 <div class="card-body">
-                   <form action="{{ route('admin.submit.form') }}" method="POST" id="'#bash-form">
+                    <form action="{{ route('admin.submit.form') }}" method="POST" id="'#bash-form">
                         @csrf
                         <input type="submit" class="btn btn-primary" value="Fetch data from platform" id="payloadSubmit">
-                   </form>
-
-                   {{-- <a href="{{ route('admin.courses.index')}}" class="btn btn-primary mt-3">Guarda la pagina dei corsi</a> --}}
-
-                   
-                   {{-- <a href="{{ route('admin.courses.index')}}">Clicca qua per vedere corsis</a> --}}
-                   {{-- {!! $htmlContent !!} --}}
+                    </form>
                 </div>
             </div>
         </div>
@@ -80,11 +46,10 @@
 
         
     </script>
-      <script>
+    <script>
 
-          document.getElementById('spinnerOverlay').style.display = 'none';
+        document.getElementById('spinnerOverlay').style.display = 'none';
 
-          
             document.getElementById('payloadSubmit').addEventListener('click', function(){
                 document.getElementById('spinnerOverlay').style.display = 'flex';
 
