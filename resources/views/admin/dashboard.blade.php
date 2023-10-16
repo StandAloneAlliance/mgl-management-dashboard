@@ -4,6 +4,7 @@
 <div class="spinner-overlay" id="spinnerOverlay">
     <div class="spinner"></div>
 </div>
+@include('partials.sidebar')
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">
         MGL Management Dashboard

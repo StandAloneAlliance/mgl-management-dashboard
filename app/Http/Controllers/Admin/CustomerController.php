@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Course;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
@@ -40,7 +41,34 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
+        $form_data = $request->all();
+
+        // GESTIONE UPLOAD DEI FILE (COVER_IMAGE)
+
+            if($request->hasFile('cover_image')){
+                    
+                $img_path = Storage::put('customer_images', $request->cover_image);
+                
+                $form_data['cover_image'] = $img_path;
+            }
         //
+
+        $customer = new Customer();
+
+        $customer->fill($form_data);
+
+        $customer->save();
+
+        // GESTIONE RELAZIONE MANY-TO-MANY (RESTAURANTS - TYPES)
+
+            // if ($request->has('types')){
+                
+            //     $restaurant->types()->attach($request->types);
+            // }
+
+        //
+
+        return redirect()->route('admin.customers.index');
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-
 @section('content')
+@include('partials.sidebar')
 <div class="container">
     <div class="row">
         <div class="col-6 mt-5">

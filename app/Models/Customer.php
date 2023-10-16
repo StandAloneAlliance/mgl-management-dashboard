@@ -10,6 +10,8 @@ class Customer extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'surname', 'cfr', 'email', 'cover_image', 'date_of_birth', 'city_of_birth', 'task'];
+
     public function courses(){
         $this->belongsToMany(Course::class);
     }
