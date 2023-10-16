@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->string('cfr');
+            $table->string('cfr')->unique();
             $table->string('email')->nullable();
             $table->string('cover_image')->nullable();
             $table->date('date_of_birth')->format('d/m/Y');

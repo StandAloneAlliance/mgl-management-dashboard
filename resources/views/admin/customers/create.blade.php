@@ -20,7 +20,7 @@
                                 <!-- Name Label -->
                                 <label class="control-label my-2">Nome *</label>
                                 <!-- Name Input Text -->
-                                <input type="text" name="name" id="name" placeholder="Inserisci il nome del corsista" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" maxlength="50" required>
+                                <input type="text" name="name" id="name" placeholder="Inserisci il nome del corsista" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" maxlength="70" required>
                                 <!-- Name Error Text -->
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>
@@ -31,7 +31,7 @@
                                 <!-- Surname Label -->
                                 <label class="control-label my-2">Cognome *</label>
                                 <!-- Surname Input Text -->
-                                <input type="text" name="surname" id="surname" placeholder="Inserisci il cognome del corsista" class="form-control @error('surname') is-invalid @enderror" value="{{ old('surname') }}" maxlength="50" required>
+                                <input type="text" name="surname" id="surname" placeholder="Inserisci il cognome del corsista" class="form-control @error('surname') is-invalid @enderror" value="{{ old('surname') }}" maxlength="70" required>
                                 <!-- Surname Error Text -->
                                 @error('surname')
                                 <div class="text-danger">{{ $message }}</div>
@@ -53,7 +53,7 @@
                                 <!-- Email Label -->
                                 <label class="control-label my-2">Email</label>
                                 <!-- Email Input Text -->
-                                <input type="email" name="email" id="email" placeholder="Inserisci l'email del corsista" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" minlength="11" maxlength="11" required>
+                                <input type="email" name="email" id="email" placeholder="Inserisci l'email del corsista" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" minlength="1" maxlength="20" required>
                                 <!-- Email Error Text -->
                                 @error('email')
                                 <div class="text-danger">{{ $message }}</div>
