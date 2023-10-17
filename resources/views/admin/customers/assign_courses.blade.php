@@ -20,9 +20,9 @@
                                 <!-- Name Label -->
                                 <label class="control-label my-2">Seleziona il corso *</label>
                                 <!-- Name Input Text -->
-                                <select name="nome_corso" class="w-75">
+                                <select name="nome_corso" class="w-100">
                                     @foreach ($courses as $course)
-                                        <option>{{ $course }}</option>
+                                        <option class="w-50">{{ $course }}</option>
                                     @endforeach
                                 </select>
                                 <!-- Name Error Text -->

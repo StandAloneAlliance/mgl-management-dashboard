@@ -11,18 +11,25 @@
 
                     <div class="card-body">
                         <ul>
-                            <li>{{ $courses->nome_corso }}</li>
-                            <li>{{ $courses->genere_corso }}</li>
-                            <li>{{ $courses->numero_autorizzazione }}</li>
-                            <li>N° posti: {{ $courses->posti_disponibili }}</li>
-                            <li>CAP: {{ $courses->cap_sede_corso }}</li>
-                            <li>Città: {{ $courses->città_di_svolgimento }} ({{ $courses->provincia }})</li>
-                            <li>Sede: {{ $courses->indirizzo_di_svolgimento }}</li>
-                            <li>Direttore: {{ $courses->direttore_corso }}</li>
-                            <li>Docente: {{ $courses->docenti_corso }}</li>
-                            <li>Data Inizio: {{ $courses->inizio_di_svolgimento }}</li>
-                            <li>Data Termine: {{ $courses->fine_svolgimento }}</li>
-                            <li>Durata: {{ $courses->durata_corso }}</li>
+                            @if (count($courses) > 0)
+                                {{-- mettere qui il foreach de corsi --}}
+                                @foreach ($courses as $course)
+                                    <li>{{ $course->nome_corso }}</li>
+                                    <li>{{ $course->genere_corso }}</li>
+                                    <li>{{ $course->numero_autorizzazione }}</li>
+                                    <li>N° posti: {{ $course->posti_disponibili }}</li>
+                                    <li>CAP: {{ $course->cap_sede_corso }}</li>
+                                    <li>Città: {{ $course->città_di_svolgimento }} ({{ $course->provincia }})</li>
+                                    <li>Sede: {{ $course->indirizzo_di_svolgimento }}</li>
+                                    <li>Direttore: {{ $course->direttore_corso }}</li>
+                                    <li>Docente: {{ $course->docenti_corso }}</li>
+                                    <li>Data Inizio: {{ $course->inizio_di_svolgimento }}</li>
+                                    <li>Data Termine: {{ $course->fine_svolgimento }}</li>
+                                    <li>Durata: {{ $course->durata_corso }}</li>
+                                @endforeach
+                            @else
+                                <h3>Nessun corso associato</h3>
+                            @endif
                         </ul>
                     </div>
                 </div>

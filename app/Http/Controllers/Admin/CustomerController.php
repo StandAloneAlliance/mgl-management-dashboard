@@ -81,9 +81,11 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show($id)
     {
-        //
+        $customer = Customer::find($id);
+        $courses = $customer->courses;
+        return view('admin.customers.show', compact('customer', 'courses'));
     }
 
     /**

@@ -49,7 +49,7 @@ class CourseController extends Controller
         $course->save();
 
         $course->customers()->attach($customer_id);
-
+        
         return redirect()->route('admin.customers.index')->with('success', 'Corsi assegnati con successo');
     }
 
