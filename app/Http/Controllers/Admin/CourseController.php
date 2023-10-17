@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 use DOMDocument;
 
 class CourseController extends Controller
@@ -42,7 +43,19 @@ class CourseController extends Controller
     {
         $form_data = $request->all();
 
+        $fine_corso = Carbon::parse($request->input('fine_svolgimento'));
+
+        $periodo_validità = $request->input('validità');
+
+        $scadenza = $fine_corso->copy()->addYears($periodo_validità);
+
         $course = new Course();
+
+        $course->fine_svolgimento = $fine_corso;
+
+        $course->validità = $periodo_validità;
+
+        $course->data_scadenza = $scadenza;
 
         $course->fill($form_data);
 

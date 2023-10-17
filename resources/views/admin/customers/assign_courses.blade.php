@@ -159,16 +159,6 @@
                                 @enderror
                             </div>
                             <div class="form-group my-4">
-                                <!-- Cover Image Label -->
-                                <label class="control-label my-2">Data Scadenza *</label>
-                                <!-- Cover Image Input File -->
-                                <input type="date" name="data_scadenza" id="data_scadenza" class="form-control @error('data_scadenza') is-invalid @enderror">
-                                <!-- Cover Image Error Text -->
-                                @error('data_scadenza')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group my-4">
                                 <!-- Surname Label -->
                                 <label class="control-label my-2">Validità *</label>
                                 <!-- Surname Input Text -->

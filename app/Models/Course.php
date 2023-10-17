@@ -19,13 +19,10 @@ class Course extends Model
         'direttore_corso',
         'docenti_corso',
         'inizio_di_svolgimento',
-        'fine_svolgimento',
         'genere_corso',
         'numero_autorizzazione',
         'durata_corso',
         'status',
-        'data_scadenza',
-        'validità'
     ];
 
     public function customers(){
