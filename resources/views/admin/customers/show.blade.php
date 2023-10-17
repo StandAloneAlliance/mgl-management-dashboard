@@ -6,7 +6,7 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Dettagli</h3>
+                        <h3>Dettagli dei corsi di {{ $customer->name}} {{ $customer->surname }}</h3>
                     </div>
 
                     <div class="card-body">
@@ -26,6 +26,9 @@
                                     <li>Data Inizio: {{ $course->inizio_di_svolgimento }}</li>
                                     <li>Data Termine: {{ $course->fine_svolgimento }}</li>
                                     <li>Durata: {{ $course->durata_corso }}</li>
+                                    <li>Stato: {{ $course->status }}</li>
+                                    <li>Data di scadenza: {{ $course->data_scadenza }}</li>
+                                    <li>Validità: {{ $course->validità }} anni</li>
                                 @endforeach
                             @else
                                 <h3>Nessun corso associato</h3>

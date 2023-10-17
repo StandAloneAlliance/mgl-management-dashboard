@@ -158,6 +158,26 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="form-group my-4">
+                                <!-- Cover Image Label -->
+                                <label class="control-label my-2">Data Scadenza *</label>
+                                <!-- Cover Image Input File -->
+                                <input type="date" name="data_scadenza" id="data_scadenza" class="form-control @error('data_scadenza') is-invalid @enderror">
+                                <!-- Cover Image Error Text -->
+                                @error('data_scadenza')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group my-4">
+                                <!-- Surname Label -->
+                                <label class="control-label my-2">Validità *</label>
+                                <!-- Surname Input Text -->
+                                <input type="number" name="validità" id="validità" placeholder="Inserisci i posti disponibili" class="form-control @error('validità') is-invalid @enderror" value="{{ old('validità') }}">
+                                <!-- Surname Error Text -->
+                                @error('validità')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <!-- Create Submit Button -->
                             <div class="col-12 d-flex justify-content-center align-items-center my-5">
                                 <button type="submit" class="btn btn-success fw-bold px-5">CREA</button>

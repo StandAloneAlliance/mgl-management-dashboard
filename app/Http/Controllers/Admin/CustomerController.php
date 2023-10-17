@@ -96,7 +96,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('admin.customers.edit', compact('customer'));
     }
 
     /**
@@ -108,7 +108,25 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $form_data = $request->all();
+
+        // GESTIONE UPLOAD DEI FILE (COVER_IMAGE)
+
+            if($request->hasFile('cover_image')){
+
+                if($customer->cover_image){
+
+                    Storage::delete($customer->cover_image);
+                }
+                
+                $img_path = Storage::put('customer_images', $request->cover_image);
+                
+                $form_data['cover_image'] = $img_path;
+            }
+
+        $customer->update($form_data);
+
+        return redirect()->route('admin.customers.index');
     }
 
     /**
@@ -119,6 +137,14 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        if($customer->cover_image){
+            Storage::delete($product->cover_image);
+        }
+
+        $customer->courses()->detach();
+    
+        $customer->delete();
+
+        return redirect()->route('admin.customers.index');
     }
 }

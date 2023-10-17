@@ -21,12 +21,23 @@
                         @foreach ($customers as $customer)  
                             <td>{{ $customer->name }} {{ $customer->surname }}</td>
                             <td>{{ $customer->cfr }}</td>
-                            <td>{{ $customer->task }}</td>
+                            <td>
+                                @if (empty($customer->task))
+                                    N.D.
+                                @endif
+                                {{ $customer->task }}
+                            </td>
                             <td>
                                 <a href="{{ route('admin.customers.show', $customer)}}" class="btn btn-primary">Show</a>
-                                <a href="{{ route('admin.customers.edit', $customer)}}" class="btn btn-primary">Show</a>
-                                <a href="{{ route('admin.customers.destroy', $customer)}}" class="btn btn-primary">Show</a>
-                                <a href="{{ route('admin.courses.assign', $customer)}}" class="btn btn-primary">Show</a>
+                                <a href="{{ route('admin.customers.edit', $customer)}}" class="btn btn-primary">Edit</a>
+                                <form action="{{ route('admin.customers.destroy', $customer) }}" method="POST" class="customer-delete-button" data-customer-name="{{ $customer->name }} {{ $customer->surname}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </form>
+                                <a href="{{ route('admin.courses.assign', $customer)}}" class="btn btn-primary">Assign Course</a>
                             </td>
                         @endforeach
                         </tr>
@@ -105,5 +116,5 @@
 
         pagination.innerHTML = linkList.join('');
     </script>
-
+@include('partials.modal_customer_delete');
 @endsection
