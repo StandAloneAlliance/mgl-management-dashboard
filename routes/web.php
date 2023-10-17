@@ -23,17 +23,18 @@ Route::get('/', function () {
     return view('home');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     // se autorizzato e verificato
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    // DEFINIZIONE ROTTE RESOURCE PER CUSTOMER CONTROLLER
     Route::resource('customers', CustomerController::class);
-    Route::resource('courses', CourseController::class);
+
+    // DEFINIZIONE ROTTA PER L?ASSEGNAZIONE DEI CORSI
     Route::get('/customer/{id}/assign-courses', [CustomerController::class, 'assignCourses'])->name('courses.assign');
-    Route::post('/customer/{id}/assign-courses', [CustomerController::class, 'storeAssignCourses'])->name('store_courses.assign');
+
+    // DEFINIZIONE ROTTA PER LO STORE DELL'ASSEGNAZIONE DEI CORSI
+    Route::post('/customer/{id}/assign-courses', [CourseController::class, 'store'])->name('store_courses.assign');
     Route::post('/courses',[CourseController::class, 'submit'])->name('submit.form');
     Route::post('/courses/store',[CourseController::class, 'store'])->name('courses.store');
 });

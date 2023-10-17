@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('provincia', 4);
             $table->string('direttore_corso', 35);
             $table->string('docenti_corso', 35);
-            $table->date('inizio_di_svolgimento');
-            $table->date('fine_svolgimento');
+            $table->date('inizio_di_svolgimento')->format('/d/m/Y');
+            $table->date('fine_svolgimento')->format('/d/m/Y');
             $table->string('genere_corso', 25);
             $table->string('numero_autorizzazione');
             $table->integer('durata_corso');

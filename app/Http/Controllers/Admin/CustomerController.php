@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
+    public function assignCourses($id)
+    {
+        // RECUPERO IL CORSISTA TRAMITE L'ID
+        $customer = Customer::find($id);
+
+        // RECUPERO L'ARRAY DEI CORSI NEL FILE NELLA CARTELLA CONFIG
+        $courses = config('courses_type');
+        
+        // PASSO ALLA VIEW LE VARIABILI CUSTOMER CON L'ID E COURSES
+        return view('admin.customers.assign_courses', compact('customer', 'courses'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,8 +43,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $types = config('courses_type');
-        return view('admin.customers.create', compact('types'));
+        return view('admin.customers.create');
     }
 
     /**
@@ -60,15 +71,6 @@ class CustomerController extends Controller
         $customer->fill($form_data);
 
         $customer->save();
-
-        // GESTIONE RELAZIONE MANY-TO-MANY (RESTAURANTS - TYPES)
-
-            // if ($request->has('types')){
-                
-            //     $restaurant->types()->attach($request->types);
-            // }
-
-        //
 
         return redirect()->route('admin.customers.index');
     }
@@ -116,21 +118,5 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
-    }
-
-    public function assignCourses($id)
-    {
-        $customer = Customer::find($id);
-        $courses = config('courses_type');
-        
-        return view('admin.customers.assign_courses', compact('customer', 'courses'));
-    }
-
-    public function storeAssignCourses(StoreCourseRequest $request, $id)
-    {
-        $customer = Customer::find($id);
-        $customer->corsi()->sync($request->input('corsi')); // Assumendo che la select abbia un attributo 'name' di 'corsi[]'
-
-        return redirect()->route('admin.customers.index')->with('success', 'Corsi assegnati con successo');
     }
 }

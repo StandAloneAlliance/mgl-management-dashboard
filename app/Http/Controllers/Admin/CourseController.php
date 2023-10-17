@@ -38,9 +38,19 @@ class CourseController extends Controller
      * @param  \App\Http\Requests\StoreCourseRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCourseRequest $request)
+    public function store(StoreCourseRequest $request, $customer_id)
     {
-        //
+        $form_data = $request->all();
+
+        $course = new Course();
+
+        $course->fill($form_data);
+
+        $course->save();
+
+        $course->customers()->attach($customer_id);
+
+        return redirect()->route('admin.customers.index')->with('success', 'Corsi assegnati con successo');
     }
 
     /**
