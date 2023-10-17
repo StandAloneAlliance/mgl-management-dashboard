@@ -30,8 +30,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // DEFINIZIONE ROTTE RESOURCE PER CUSTOMER CONTROLLER
     Route::resource('customers', CustomerController::class);
 
-    // DEFINIZIONE ROTTA PER L?ASSEGNAZIONE DEI CORSI
+    // DEFINIZIONE ROTTA PER L'ASSEGNAZIONE DEI CORSI
     Route::get('/customer/{id}/assign-courses', [CustomerController::class, 'assignCourses'])->name('courses.assign');
+
+    // DEFINIZIONE ROTTA PER L'UPDATE DEI CORSI
+    Route::get('/customer/{customer_id}/courses/{course_id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+
+    // DEFINIZIONE ROTTA PER LA MODIFICA DEI CORSI
+    Route::put('/customer/{customer_id}/courses/{course_id}/edit', [CourseController::class, 'update'])->name('courses.modify');
 
     // DEFINIZIONE ROTTA PER LO STORE DELL'ASSEGNAZIONE DEI CORSI
     Route::post('/customer/{id}/assign-courses', [CourseController::class, 'store'])->name('store_courses.assign');

@@ -10,10 +10,10 @@
                     </div>
 
                     <div class="card-body">
-                        <ul>
-                            @if (count($courses) > 0)
-                                {{-- mettere qui il foreach de corsi --}}
-                                @foreach ($courses as $course)
+                        @if (count($courses) > 0)
+                            {{-- mettere qui il foreach de corsi --}}
+                            @foreach ($courses as $course)
+                                <ul>
                                     <li>{{ $course->nome_corso }}</li>
                                     <li>{{ $course->genere_corso }}</li>
                                     <li>{{ $course->numero_autorizzazione }}</li>
@@ -28,12 +28,13 @@
                                     <li>Durata: {{ $course->durata_corso }}</li>
                                     <li>Stato: {{ $course->status }}</li>
                                     <li>Data di scadenza: {{ $course->data_scadenza }}</li>
-                                    <li>Validità: {{ $course->validità }} anni</li>
-                                @endforeach
-                            @else
-                                <h3>Nessun corso associato</h3>
-                            @endif
-                        </ul>
+                                    <li>Validità: {{ $course->validità }} anni</li>                     
+                                </ul>
+                                <a href="{{ route('admin.courses.edit', ['customer_id' => $customer->id, 'course_id' => $course->id])}}" class="btn btn-success">Modifica il corso</a>
+                            @endforeach
+                        @else
+                            <h3>Nessun corso associato</h3>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -70,9 +70,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit($customer_id, $course_id)
     {
-        //
+        $customer = Customer::find($customer_id);
+        $course = Course::find($course_id);
+        return view('admin.courses.edit', compact('customer', 'course'));
     }
 
     /**
@@ -82,9 +84,13 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCourseRequest $request, Course $course)
+    public function update(UpdateCourseRequest $request, $customer_id, $course_id)
     {
-        //
+        $customer = Customer::find($customer_id);
+        $course = Course::find($course_id);
+        $form_data = $request->all();
+        $course->update($form_data);
+        return redirect()->route('admin.customers.show', compact('customer', 'course'));
     }
 
     /**
