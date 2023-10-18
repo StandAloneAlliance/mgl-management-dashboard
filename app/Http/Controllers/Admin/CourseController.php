@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use DOMDocument;
 
@@ -21,7 +22,26 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $months = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $monthDate = Carbon::createFromDate(2023, $i, 1);
+            $months[] = $monthDate->format('Y-m');
+        }
+
+        $courseData = Course::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
+            ->whereYear('created_at', 2023) // Filtra per l'anno 2023
+            ->groupBy(DB::raw('DATE_FORMAT(created_at, "%Y-%m")'))
+            ->orderBy(DB::raw('DATE_FORMAT(created_at, "%Y-%m")'))
+            ->pluck('total', 'month');
+
+        $courseCounts = [];
+
+        foreach ($months as $month) {
+            $courseCounts[] = $courseData[$month] ?? 0;
+        }
+
+        return view('admin.courses.index', compact('months', 'courseCounts'));
     }
 
     /**

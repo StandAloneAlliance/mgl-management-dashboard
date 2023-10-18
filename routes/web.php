@@ -36,6 +36,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // DEFINIZIONE ROTTA PER L'UPDATE DEI CORSI
     Route::get('/customer/{customer_id}/courses/{course_id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
 
+    // ROTTA PER LA VISTA DELLE STATISTICHE DEI CORSI
+    Route::get('/courses/statistics', [CourseController::class, 'index'])->name('courses.index');
     // DEFINIZIONE ROTTA PER LA MODIFICA DEI CORSI
     Route::put('/customer/{customer_id}/courses/{course_id}/edit', [CourseController::class, 'update'])->name('courses.modify');
 
