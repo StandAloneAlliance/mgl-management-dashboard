@@ -22,6 +22,8 @@ class CourseController extends Controller
      */
     public function index()
     {
+        $courses = Course::all();
+
         $months = [];
 
         for ($i = 1; $i <= 12; $i++) {
@@ -41,7 +43,7 @@ class CourseController extends Controller
             $courseCounts[] = $courseData[$month] ?? 0;
         }
 
-        return view('admin.courses.index', compact('months', 'courseCounts'));
+        return view('admin.courses.index', compact('courses', 'months', 'courseCounts'));
     }
 
     /**
