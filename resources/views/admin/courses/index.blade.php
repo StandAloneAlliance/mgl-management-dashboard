@@ -22,13 +22,8 @@
             </div>
         @endif
         <!-- Card Restaurant Order Statistics -->
-        @if (count($courses) > 0)
-            <div class="col-12 d-flex justify-content-center align-items-center bg-white my-5">
-                <canvas id="coursesChart"></canvas>  
-            </div>
-        @endif
-        <div class="col-4">
-            <h3 class="text-center mt-5">Non ci sono statistiche</h3>
+        <div class="col-12 d-flex justify-content-center align-items-center bg-white my-5">
+            <canvas id="coursesChart"></canvas>  
         </div>
     </div>
 </div>

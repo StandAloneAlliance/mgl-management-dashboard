@@ -18,6 +18,10 @@ class CustomerController extends Controller
         // RECUPERO IL CORSISTA TRAMITE L'ID
         $customer = Customer::find($id);
 
+        if (!$customer) {
+            return redirect()->back()->with('errore', 'Corsista non trovato');
+        }
+
         // RECUPERO L'ARRAY DEI CORSI NEL FILE NELLA CARTELLA CONFIG
         $courses = config('courses_type');
         
@@ -84,9 +88,16 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-        $courses = $customer->courses;
-        return view('admin.customers.show', compact('customer', 'courses'));
+
+        if($customer && $customer->courses()->exists()){
+            $courses = $customer->courses;
+            return view('admin.customers.show', compact('customer', 'courses'));
+        } else {
+            return redirect()->back()->with('errore', 'Operazione non autorizzata');
+
+        }
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -96,7 +107,11 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('admin.customers.edit', compact('customer'));
+        if(isset($customer)){
+            return view('admin.customers.edit', compact('customer'));
+        } else {
+            return redirect()->back()->with('error', 'Operazione non autorizzata');
+        }
     }
 
     /**

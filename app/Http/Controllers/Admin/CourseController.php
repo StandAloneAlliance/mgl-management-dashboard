@@ -24,26 +24,32 @@ class CourseController extends Controller
     {
         $courses = Course::all();
 
-        $months = [];
+        if(count($courses) > 0){
+            $months = [];
+    
+            for ($i = 1; $i <= 12; $i++) {
+                $monthDate = Carbon::createFromDate(2023, $i, 1);
+                $months[] = $monthDate->format('Y-m');
+            }
+    
+            $courseData = Course::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
+                ->whereYear('created_at', 2023) // Filtra per l'anno 2023
+                ->groupBy(DB::raw('DATE_FORMAT(created_at, "%Y-%m")'))
+                ->orderBy(DB::raw('DATE_FORMAT(created_at, "%Y-%m")'))
+                ->pluck('total', 'month');
+    
+            $courseCounts = [];
+    
+            foreach ($months as $month) {
+                $courseCounts[] = $courseData[$month] ?? 0;
+            }
+    
+            return view('admin.courses.index', compact('courses', 'months', 'courseCounts'));
+        } else { 
 
-        for ($i = 1; $i <= 12; $i++) {
-            $monthDate = Carbon::createFromDate(2023, $i, 1);
-            $months[] = $monthDate->format('Y-m');
+            return redirect()->back()->with('error', 'Operazione non autorizzata');
+
         }
-
-        $courseData = Course::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
-            ->whereYear('created_at', 2023) // Filtra per l'anno 2023
-            ->groupBy(DB::raw('DATE_FORMAT(created_at, "%Y-%m")'))
-            ->orderBy(DB::raw('DATE_FORMAT(created_at, "%Y-%m")'))
-            ->pluck('total', 'month');
-
-        $courseCounts = [];
-
-        foreach ($months as $month) {
-            $courseCounts[] = $courseData[$month] ?? 0;
-        }
-
-        return view('admin.courses.index', compact('courses', 'months', 'courseCounts'));
     }
 
     /**
@@ -109,8 +115,15 @@ class CourseController extends Controller
     {
         $customer = Customer::find($customer_id);
         $course = Course::find($course_id);
+    
+        // Verifica se sia il corsista che il corso esistono
+        if (!$customer || !$course) {
+            return redirect()->back()->with('errore', 'Operazione non autorizzata');
+        }
+    
         return view('admin.courses.edit', compact('customer', 'course'));
     }
+    
 
     /**
      * Update the specified resource in storage.

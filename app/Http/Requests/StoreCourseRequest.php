@@ -24,7 +24,7 @@ class StoreCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome_corso'                =>  'required|max:60',
+            'nome_corso'                =>  'required',
             'posti_disponibili'         =>  'required|numeric',
             'indirizzo_di_svolgimento'  =>  'required|max:40',
             'cap_sede_corso'            =>  'required|digits_between:1,5',
@@ -32,8 +32,8 @@ class StoreCourseRequest extends FormRequest
             'provincia'                 =>  'required|string|size:2',
             'direttore_corso'           =>  'required|string|max:35',
             'docenti_corso'             =>  'required|string|max:35',
-            'inizio_di_svolgimento'     =>  'required|date_format:d/m/Y',
-            'fine_svolgimento'          =>  'required|date_format:d/m/Y|after_or_equal:inizio_di_svolgimento',
+            'inizio_di_svolgimento'     =>  'required',
+            'fine_svolgimento'          =>  'required|after_or_equal:inizio_di_svolgimento',
             'genere_corso'              =>  'required|string|max:25',
             'numero_autorizzazione'     =>  'required|string',
             'durata_corso'              =>  'required|integer|min:1',
@@ -45,7 +45,6 @@ class StoreCourseRequest extends FormRequest
     {
         return [
             'nome_corso.required'               => 'Il nome del corso è obbligatorio.',
-            'nome_corso.max'                    => 'Il nome del corso non può superare :max caratteri.',
             'posti_disponibili.required'        => 'Il numero di posti disponibili è obbligatorio.',
             'posti_disponibili.integer'         => 'Il numero di posti disponibili deve essere un numero intero.',
             'posti_disponibili.min'             => 'Il numero di posti disponibili deve essere almeno :min.',
@@ -63,9 +62,7 @@ class StoreCourseRequest extends FormRequest
             'docenti_corso.required'            => 'Il nome del docente del corso è obbligatorio.',
             'docenti_corso.max'                 => 'Il nome del docente del corso non può superare :max caratteri.',
             'inizio_di_svolgimento.required'    => 'La data di inizio del corso è obbligatoria.',
-            'inizio_di_svolgimento.date_format' => 'La data di inizio del corso deve seguire il formato :format.',
             'fine_svolgimento.required'         => 'La data di fine del corso è obbligatoria.',
-            'fine_svolgimento.date_format'      => 'La data di fine del corso deve seguire il formato :format.',
             'fine_svolgimento.after_or_equal'   => 'La data di fine del corso deve essere successiva o uguale alla data di inizio del corso.',
             'genere_corso.required'             => 'Il genere del corso è obbligatorio.',
             'genere_corso.max'                  => 'Il genere del corso non può superare :max caratteri.',
