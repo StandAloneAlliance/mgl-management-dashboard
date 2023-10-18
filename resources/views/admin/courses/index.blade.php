@@ -45,7 +45,14 @@
             scales: {
                 y: {
                     beginAtZero: true,
-                    stepSize: 1
+                    ticks: {
+                        callback: function(value, index, values) {
+                            // Mostra solo numeri interi
+                            if (Math.floor(value) === value) {
+                                return value;
+                            }
+                        }
+                    }
                 }
             }
         };
