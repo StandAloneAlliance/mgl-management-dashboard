@@ -138,7 +138,7 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         if($customer->cover_image){
-            Storage::delete($product->cover_image);
+            Storage::delete($customer->cover_image);
         }
 
         $customer->courses()->detach();
