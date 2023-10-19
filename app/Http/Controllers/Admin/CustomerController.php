@@ -38,12 +38,17 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
+        $surname = $request->input('surname');
         $fiscal_code = $request->input('fiscal_code');
 
         $customer_query = Customer::query();
 
         if($keyword){
             $customer_query->where('name', 'like', "%$keyword%");
+        }
+
+        if($surname){
+            $customer_query->where('surname', 'like', "%$surname%");
         }
 
         if($fiscal_code){

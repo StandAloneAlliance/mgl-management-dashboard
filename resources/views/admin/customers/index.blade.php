@@ -4,21 +4,23 @@
     <div class="container">
         @if (count($customers) > 0)
         <div class="row">
-            <div class="col my-5">
-                <div class="input-group">
-                    <a href="{{ route('admin.customers.create')}}" class="btn btn-primary mx-3">Aggiungi corsista</a>
-                    <form action="{{ route('admin.customers.index')}}" method="GET" class="d-flex">
-                        @csrf
-                        <input type="text" class="form-control" name="keyword" placeholder="Cerca per nome">
-                        <input type="text" class="form-control" name="fiscal_code" placeholder="Cerca per C.F.">
-                        <div class="input-group-append mx-3">
-                            <button class="btn btn-outline-secondary" type="submit">Cerca</button>
-                        </div>
-                    </form>
-                </div>
+            <div class="col">
+                <a href="{{ route('admin.customers.create')}}" class="btn btn-sm btn-primary mx-3">Aggiungi corsista</a>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
+            <div class="col-8 my-5">
+                <form action="{{ route('admin.customers.index')}}" method="GET" class="input-group d-flex">
+                    @csrf
+                    <input type="text" class="form-control ms-3" name="keyword" placeholder="Cerca per nome">
+                    <input type="text" class="form-control ms-3" name="surname" placeholder="Cerca per cognome">
+                    <input type="text" class="form-control ms-3" name="fiscal_code" placeholder="Cerca per C.F.">
+                    <div class="input-group-append mx-3">
+                        <button class="btn btn-outline-secondary" type="submit">Cerca</button>
+                    </div>
+                </form>
+            </div>
+
             <div class="col-8">
                 <table class="table table-striped shadow bg-body-tertiary">
                     <thead>
