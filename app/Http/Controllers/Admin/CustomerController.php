@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -34,9 +35,23 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::all();
+        $keyword = $request->input('keyword');
+        $fiscal_code = $request->input('fiscal_code');
+
+        $customer_query = Customer::query();
+
+        if($keyword){
+            $customer_query->where('name', 'like', "%$keyword%");
+        }
+
+        if($fiscal_code){
+            $customer_query->where('cfr', 'like', "%$fiscal_code%");
+        }
+
+        $customers = $customer_query->get();
+
         return view('admin.customers.index', compact('customers'));
     }
 
