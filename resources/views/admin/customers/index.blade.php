@@ -2,41 +2,41 @@
 @section('content')
 @include('partials.sidebar')
     <div class="container">
-        @if (session('error'))
-            <!-- Operation not Authorized Message -->
-            <div class="col-12 col-lg-6 mt-5">
-                <div class="alert alert-danger">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <span>{{ session('error') }}</span>
-                </div>
-            </div>
-        @endif
-        @if (session('message'))
-            <!-- Confirm Message -->
-            <div class="col-12 col-lg-6 mt-5">
-                <div class="alert alert-success">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <span>{{ session('message') }}</span>
-                </div>
-            </div>
-        @endif
         @if (count($customers) > 0)
-        <div class="row d-flex justify-content-center">
-            <div class="col">
-                <a href="{{ route('admin.customers.create')}}" class="btn btn-sm btn-primary mx-3">Aggiungi corsista</a>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <div class="col-8 my-5">
-                <form action="{{ route('admin.customers.index')}}" method="GET" class="input-group d-flex">
-                    @csrf
-                    <input type="text" class="form-control ms-3" name="keyword" placeholder="Cerca per nome">
-                    <input type="text" class="form-control ms-3" name="surname" placeholder="Cerca per cognome">
-                    <input type="text" class="form-control ms-3" name="fiscal_code" placeholder="Cerca per C.F.">
-                    <div class="input-group-append mx-3">
-                        <button class="btn btn-outline-secondary" type="submit">Cerca</button>
+        <div class="row d-flex flex-column align-items-center">
+            @if (session('error'))
+                <!-- Operation not Authorized Message -->
+                <div class="col-12 col-lg-6 mt-5">
+                    <div class="alert alert-danger">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>{{ session('error') }}</span>
                     </div>
-                </form>
+                </div>
+            @endif
+            @if (session('message'))
+                <!-- Confirm Message -->
+                <div class="col-12 col-lg-6 mt-5">
+                    <div class="alert alert-success">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>{{ session('message') }}</span>
+                    </div>
+                </div>
+            @endif
+            <div class="col-10 d-flex justify-content-center my-5">
+                <div class="col-2">
+                    <a href="{{ route('admin.customers.create')}}" class="btn btn-sm btn-primary mx-3">Aggiungi corsista</a>
+                </div>
+                <div class="col-8">
+                    <form action="{{ route('admin.customers.index')}}" method="GET" class="input-group d-flex">
+                        @csrf
+                        <input type="text" class="form-control ms-3" name="keyword" placeholder="Cerca per nome">
+                        <input type="text" class="form-control ms-3" name="surname" placeholder="Cerca per cognome">
+                        <input type="text" class="form-control ms-3" name="fiscal_code" placeholder="Cerca per C.F.">
+                        <div class="input-group-append mx-3">
+                            <button class="btn btn-outline-secondary" type="submit">Cerca</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div class="col-8">

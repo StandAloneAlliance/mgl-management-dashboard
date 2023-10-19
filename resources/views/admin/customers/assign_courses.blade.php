@@ -38,9 +38,9 @@
                                 <!-- Name Label -->
                                 <label class="control-label my-2">Seleziona il corso *</label>
                                 <!-- Name Input Text -->
-                                <select name="nome_corso" class="w-100">
+                                <select class="form-select form-select-lg" name="nome_corso" class="w-100">
                                     @foreach ($courses as $course)
-                                        <option class="w-50">{{ $course }}</option>
+                                        <option class="option-size">{{ $course }}</option>
                                     @endforeach
                                 </select>
                                 <!-- Name Error Text -->
@@ -150,7 +150,13 @@
                                 <!-- Customer Task Of Birth Label -->
                                 <label class="control-label my-2">Genere corso *</label>
                                 <!-- Customer Task Input Text -->
-                                <input type="text" name="genere_corso" id="genere_corso" placeholder="Inserisci il genere corso" class="form-control @error('genere_corso') is-invalid @enderror" value="{{ old('genere_corso') }}">
+                                <select class="form-select" name="genere_corso" id="genere_corso">
+                                    <option value="Seleziona un genere" selected>Seleziona un genere</option>
+                                    <option value="1">D.Lgs 81/2008</option>
+                                    <option value="2">Aggiornamento</option>
+                                    <option value="3">/da mettere un altro genere/</option>
+                                    <option value="4">/da mettere un altro genere/</option>
+                                </select>
                                 <!-- Customer Task Error Text -->
                                 @error('genere_corso')
                                 <div class="text-danger">{{ $message }}</div>
