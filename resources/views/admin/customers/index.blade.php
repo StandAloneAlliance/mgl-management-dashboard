@@ -2,8 +2,26 @@
 @section('content')
 @include('partials.sidebar')
     <div class="container">
+        @if (session('error'))
+            <!-- Operation not Authorized Message -->
+            <div class="col-12 col-lg-6 mt-5">
+                <div class="alert alert-danger">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>{{ session('error') }}</span>
+                </div>
+            </div>
+        @endif
+        @if (session('message'))
+            <!-- Confirm Message -->
+            <div class="col-12 col-lg-6 mt-5">
+                <div class="alert alert-success">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>{{ session('message') }}</span>
+                </div>
+            </div>
+        @endif
         @if (count($customers) > 0)
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             <div class="col">
                 <a href="{{ route('admin.customers.create')}}" class="btn btn-sm btn-primary mx-3">Aggiungi corsista</a>
             </div>

@@ -91,7 +91,7 @@ class CourseController extends Controller
 
         $course->customers()->attach($customer_id);
         
-        return redirect()->route('admin.customers.index')->with('success', 'Corsi assegnati con successo');
+        return redirect()->route('admin.customers.index')->with('message', 'Corso assegnato correttamente');
     }
 
     /**
@@ -118,12 +118,11 @@ class CourseController extends Controller
     
         // Verifica se sia il corsista che il corso esistono
         if (!$customer || !$course) {
-            return redirect()->back()->with('errore', 'Operazione non autorizzata');
+            return redirect()->back()->with('error', 'Operazione non autorizzata');
         }
     
         return view('admin.courses.edit', compact('customer', 'course'));
-    }
-    
+    }    
 
     /**
      * Update the specified resource in storage.
@@ -138,7 +137,7 @@ class CourseController extends Controller
         $course = Course::find($course_id);
         $form_data = $request->all();
         $course->update($form_data);
-        return redirect()->route('admin.customers.show', compact('customer', 'course'));
+        return redirect()->route('admin.customers.show', compact('customer', 'course'))->with('message', 'Hai modificato il corso correttamente');
     }
 
     /**

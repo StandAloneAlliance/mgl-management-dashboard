@@ -55,7 +55,7 @@ class CustomerController extends Controller
             $customer_query->where('cfr', 'like', "%$fiscal_code%");
         }
 
-        $customers = $customer_query->get();
+        $customers = $customer_query->orderBy('created_at', 'desc')->get();
 
         return view('admin.customers.index', compact('customers'));
     }
@@ -96,7 +96,7 @@ class CustomerController extends Controller
 
         $customer->save();
 
-        return redirect()->route('admin.customers.index');
+        return redirect()->route('admin.customers.show', compact('customer'))->with('message', 'Hai creato un nuovo corsista, assegnali subito un corso');
     }
 
     /**
@@ -113,7 +113,7 @@ class CustomerController extends Controller
             $courses = $customer->courses;
             return view('admin.customers.show', compact('customer', 'courses'));
         } else {
-            return redirect()->back()->with('errore', 'Operazione non autorizzata');
+            return redirect()->back()->with('error', 'Operazione non autorizzata');
 
         }
     }
@@ -161,7 +161,7 @@ class CustomerController extends Controller
 
         $customer->update($form_data);
 
-        return redirect()->route('admin.customers.index');
+        return redirect()->route('admin.customers.index')->with('message', 'Hai modificato il corsista correttamente');
     }
 
     /**
