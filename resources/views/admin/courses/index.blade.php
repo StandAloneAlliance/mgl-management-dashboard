@@ -1,58 +1,68 @@
 @extends('layouts.admin')
-
 @section('content')
+@include('partials.sidebar')
 <div class="container">
-    <div class="row">
-        <div class="col-12 mt-5">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Corsi richiesti</h3>
-                    <a href="{{ route('admin.courses.create')}}" class="btn btn-primary">Aggiungi corso</a>
-                </div>
-                <div class="card-body">
-                    <div class="list-table table dataTable">
-                        <thead>
-                            <tr>
-                                <th>Corso Aula</th>
-                                <th>Autorizzazione</th>
-                                <th>Categoria</th>
-                                <th>Indirizzo Sede</th>
-                                <th>Data Inizio</th>
-                                <th>Data Fine</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach ($courses as $course)
-                                <tr>
-                                    <td>{{ $course->nome_corso }}</td>
-                                    <td>{{ $course->numero_autorizzazione }}</td>
-                                    <td>{{ $course->genere_corso }}</td>
-                                    <td>{{ $course->indirizzo_di_svolgimento }}</td>
-                                    <td>{{ $course->inizio_di_svolgimento }}</td>
-                                    <td>{{ $course->fine_svolgimento }}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                              Azioni
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                              <li><a class="dropdown-item" href="{{ route('admin.courses.show', $course->id)}}">Visualizza</a></li>
-                                              <li><a class="dropdown-item" href="#">Annulla</a></li>
-                                              <li><a class="dropdown-item" href="#">Richiedi modifica</a></li>
-                                              <li><a class="dropdown-item" href="#">Richiedi rilascio attestati</a></li>
-                                              <li><a class="dropdown-item" href="#">Lettera di autorizzazione</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </div>
+    <div class="row justify-content-center">
+        @if (session('error'))
+            <!-- Operation not Authorized Message -->
+            <div class="col-12 col-lg-6 mt-5">
+                <div class="alert alert-danger">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>{{ session('error') }}</span>
                 </div>
             </div>
+        @endif
+        @if (session('message'))
+            <!-- Confirm Message -->
+            <div class="col-12 col-lg-6 mt-5">
+                <div class="alert alert-success">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>{{ session('message') }}</span>
+                </div>
+            </div>
+        @endif
+        <!-- Card Restaurant Order Statistics -->
+        <div class="col-12 d-flex justify-content-center align-items-center bg-white my-5">
+            <canvas id="coursesChart"></canvas>  
         </div>
     </div>
 </div>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('coursesChart').getContext('2d');
+        var data = {
+            labels: {!! json_encode($months) !!},
+            datasets: [{
+                label: 'Numero di Corsi',
+                data: {!! json_encode($courseCounts) !!},
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+    
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value, index, values) {
+                            // Mostra solo numeri interi
+                            if (Math.floor(value) === value) {
+                                return value;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    });
+</script>
+    
 @endsection

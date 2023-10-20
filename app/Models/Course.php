@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Customer;
 
 class Course extends Model
 {
@@ -18,10 +19,13 @@ class Course extends Model
         'direttore_corso',
         'docenti_corso',
         'inizio_di_svolgimento',
-        'fine_svolgimento',
         'genere_corso',
         'numero_autorizzazione',
-        'durata_corso'
+        'durata_corso',
+        'status',
     ];
-    
+
+    public function customers(){
+        return $this->belongsToMany(Customer::class);
+    }
 }

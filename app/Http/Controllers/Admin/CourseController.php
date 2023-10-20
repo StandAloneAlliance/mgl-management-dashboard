@@ -4,14 +4,153 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use DOMDocument;
 
 class CourseController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $courses = Course::all();
+
+        if(count($courses) > 0){
+            $months = [];
+    
+            for ($i = 1; $i <= 12; $i++) {
+                $monthDate = Carbon::createFromDate(2023, $i, 1);
+                $months[] = $monthDate->format('Y-m');
+            }
+    
+            $courseData = Course::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
+                ->whereYear('created_at', 2023) // Filtra per l'anno 2023
+                ->groupBy(DB::raw('DATE_FORMAT(created_at, "%Y-%m")'))
+                ->orderBy(DB::raw('DATE_FORMAT(created_at, "%Y-%m")'))
+                ->pluck('total', 'month');
+    
+            $courseCounts = [];
+    
+            foreach ($months as $month) {
+                $courseCounts[] = $courseData[$month] ?? 0;
+            }
+    
+            return view('admin.courses.index', compact('courses', 'months', 'courseCounts'));
+        } else { 
+
+            return redirect()->back()->with('error', 'Operazione non autorizzata');
+
+        }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreCourseRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreCourseRequest $request, $customer_id)
+    {
+        $form_data = $request->all();
+
+        $fine_corso = Carbon::parse($request->input('fine_svolgimento'));
+
+        $periodo_validità = $request->input('validità');
+
+        $scadenza = $fine_corso->copy()->addYears($periodo_validità);
+
+        $course = new Course();
+
+        $course->fine_svolgimento = $fine_corso;
+
+        $course->validità = $periodo_validità;
+
+        $course->data_scadenza = $scadenza;
+
+        $course->fill($form_data);
+
+        $course->save();
+
+        $course->customers()->attach($customer_id);
+        
+        return redirect()->route('admin.customers.index')->with('message', 'Corso assegnato correttamente');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Course $course)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($customer_id, $course_id)
+    {
+        $customer = Customer::find($customer_id);
+        $course = Course::find($course_id);
+    
+        // Verifica se sia il corsista che il corso esistono
+        if (!$customer || !$course) {
+            return redirect()->back()->with('error', 'Operazione non autorizzata');
+        }
+    
+        return view('admin.courses.edit', compact('customer', 'course'));
+    }    
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateCourseRequest  $request
+     * @param  \App\Models\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateCourseRequest $request, $customer_id, $course_id)
+    {
+        $customer = Customer::find($customer_id);
+        $course = Course::find($course_id);
+        $form_data = $request->all();
+        $course->update($form_data);
+        return redirect()->route('admin.customers.show', compact('customer', 'course'))->with('message', 'Hai modificato il corso correttamente');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Course $course)
+    {
+        //
+    }
+
     public $sharedData = [];
 
     public function submit(Request $request)
@@ -86,5 +225,3 @@ class CourseController extends Controller
     }
     }
 }
-
- 

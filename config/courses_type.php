@@ -1,7 +1,6 @@
 <?php
 
 return[
-    [
         "(19) Corso di formazione TEORICO/PRATICO per operatori addetti alla conduzione di trattori agricoli o forestali  a ruote",
         "(21) Corso di formazione TEORICO/PRATICO  per operatori addetti alla conduzione di trattori agricoli o forestali  a ruote e cingoli (13 ore)",
         "(22) Corso di formazione TEORICO/PRATICO per operatori addetti alla conduzione di pompe per calcestruzzo",
@@ -1617,5 +1616,4 @@ return[
         // "(2244) Corso di formazione per volontari impiegati nelle pubbliche manifestazioni (SAFETY &amp; SECURITY) (8 ore)",
         // "(2245) Corso di informazione, formazione e addestramento all`utilizzo dei DPI di terza categoria e guanti e mascherine",
         // "(2246) Corso di aggiornamento per R.S.P.P./A.S.P.P. - tutti i macrosettori ateco 2007 e i nuovi settori produttivi SP1, SP2, SP3 e SP4 'Adempimenti ambientali normativa cogente di base  ed obblighi  per le aziende' (videoconferenza) (24 ore)",
-        // ]
-    ]];
+    ];
