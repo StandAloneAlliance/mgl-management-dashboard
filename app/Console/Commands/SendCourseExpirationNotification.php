@@ -37,7 +37,7 @@ class SendCourseExpirationNotification extends Command
                 $user = $customer->user;
 
                 if ($user) {
-                    
+                    Mail::to($user->email)->send(new MailForUsers($user));
                 }
             }
         }
