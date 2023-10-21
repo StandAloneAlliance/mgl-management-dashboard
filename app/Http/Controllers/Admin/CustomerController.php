@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Course;
+use App\Models\User;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Requests\StoreCourseRequest;
@@ -92,11 +93,15 @@ class CustomerController extends Controller
 
         $customer = new Customer();
 
+        $user = auth()->user();
+
+        $customer->user_id = $user->id;
+
         $customer->fill($form_data);
 
         $customer->save();
 
-        return redirect()->route('admin.customers.show', compact('customer'))->with('message', 'Hai creato un nuovo corsista, assegnali subito un corso');
+        return redirect()->route('admin.customers.index')->with('message', 'Hai creato un nuovo corsista, assegnali subito un corso');
     }
 
     /**

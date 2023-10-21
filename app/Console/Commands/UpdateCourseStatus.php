@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Course;
+use App\Models\Customer;
+use App\Models\User;
 use Carbon\Carbon;
 
 class UpdateCourseStatus extends Command
@@ -39,6 +41,7 @@ class UpdateCourseStatus extends Command
         }
 
         $this->info('Course statuses updated successfully.');
+
     }
 }
 
