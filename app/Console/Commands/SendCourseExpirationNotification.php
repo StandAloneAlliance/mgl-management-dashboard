@@ -6,6 +6,10 @@ use Illuminate\Console\Command;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Customers;
+use App\Models\Lead;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailForUsers;
 
 class SendCourseExpirationNotification extends Command
 {
@@ -34,7 +38,7 @@ class SendCourseExpirationNotification extends Command
 
         foreach ($expiry_courses as $course) {
             foreach ($course->customers as $customer) {
-                $user = $customer->user;
+                $user = $customer->user()->first(); // Otteni il primo utente
 
                 if ($user) {
                     Mail::to($user->email)->send(new MailForUsers($user));
