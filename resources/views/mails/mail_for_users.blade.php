@@ -3,6 +3,6 @@
 
     Ciao {{ $lead->name }} {{ $lead->surname }}!<br><br>
 
-    Grazie per aver effettuato un ordine con noi, stiamo arrivando!
+    Il tuo corso sta per scadere!!
 
 </p>

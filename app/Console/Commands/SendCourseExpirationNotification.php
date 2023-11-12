@@ -10,6 +10,7 @@ use App\Models\Lead;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailForUsers;
+use App\Mail\MailForCustomers;
 
 class SendCourseExpirationNotification extends Command
 {
@@ -34,15 +35,24 @@ class SendCourseExpirationNotification extends Command
      */
     public function handle()
     {
-        $expiry_courses = Course::with('customers.user')->whereDate('data_scadenza', Carbon::now()->subDays(8))->get();
+       // Ottieni tutti i corsi che sono in scadenza esattamente 8 giorni dopo la data attuale
+       $courses = Course::whereDate('data_scadenza', now()->addDays(8)->toDateString())->get();
 
-        foreach ($expiry_courses as $course) {
-            foreach ($course->customers as $customer) {
-                $user = $customer->user()->first(); // Otteni il primo utente
+        foreach ($courses as $course) {
+            // Ottieni tutti i corsisti associati al corso
+            $each_customers = $course->customers;
 
-                if ($user) {
-                    Mail::to($user->email)->send(new MailForUsers($user));
-                }
+            foreach ($each_customers as $customer) {
+                // Invia l'e-mail ai corsisti associati al corso
+                Mail::to($customer->email)->send(new MailForUsers($customer, $course));
+            }
+
+            // Ottieni tutti gli amministratori della piattaforma
+            $adminUsers = User::all();
+            // Invia l'e-mail agli amministratori della piattaforma
+
+            foreach ($adminUsers as $adminUser) {
+                Mail::to($adminUser->email)->send(new MailForCustomers($adminUser, $course));
             }
         }
     }

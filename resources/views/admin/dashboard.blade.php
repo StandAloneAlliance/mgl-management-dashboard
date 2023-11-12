@@ -12,14 +12,7 @@
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
-                <div class="card-header">Course Fetcher</div>
-
-                <div class="card-body">
-                    <form action="{{ route('admin.submit.form') }}" method="POST" id="'#bash-form">
-                        @csrf
-                        <input type="submit" class="btn btn-primary" value="Fetch data from platform" id="payloadSubmit">
-                    </form>
-                </div>
+            
             </div>
         </div>
     </div>
