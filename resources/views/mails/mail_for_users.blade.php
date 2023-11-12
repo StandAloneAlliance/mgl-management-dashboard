@@ -1,8 +1,7 @@
-<h1>Il tuo ordine è stato confermato!</h1>
+<h1>Hai ricevuto un nuovo ordine su Deliveboo!</h1>
 <p>
 
-    Ciao {{ $lead->name }} {{ $lead->surname }}!<br><br>
-
-    Il tuo corso sta per scadere!!
+    {{ $lead->name }} {{ $lead->surname }} sta per scadere un corso, 
+    avvisa il corsista per un aggiornamento prima che scada
 
 </p>

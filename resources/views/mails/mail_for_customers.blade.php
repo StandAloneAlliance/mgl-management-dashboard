@@ -1,8 +1,9 @@
-<h1>Hai ricevuto un nuovo ordine su Deliveboo!</h1>
+<h1>Il tuo ordine è stato confermato!</h1>
 <p>
 
-    {{ $lead->name }} {{ $lead->surname }} ha effettuato un ordine presso il tuo ristorante registrato su Deliveboo!<br><br>
+    Ciao {{ $lead->name }} {{ $lead->surname }}!<br><br>
 
-    Accedi alla tua dashboard per vedere tutti i dettagli e processare l'ordine.
+    Il tuo corso sta per scadere!!
+    Richiedi un aggiornamento prima che scada.
 
 </p>

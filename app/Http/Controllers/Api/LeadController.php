@@ -61,10 +61,6 @@ class LeadController extends Controller
 
         $new_lead->save();
 
-        $newLeadEmail = $new_lead->email;
-
-        Mail::to($newLeadEmail)->send(new MailForUsers($new_lead));
-
         return response()->json([
             'success' => true
         ]);

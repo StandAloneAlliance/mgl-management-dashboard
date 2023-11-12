@@ -36,7 +36,7 @@ class SendCourseExpirationNotification extends Command
     public function handle()
     {
        // Ottieni tutti i corsi che sono in scadenza esattamente 8 giorni dopo la data attuale
-       $courses = Course::whereDate('data_scadenza', now()->addDays(8)->toDateString())->get();
+        $courses = Course::whereDate('data_scadenza', now()->addDays(8)->toDateString())->get();
 
         foreach ($courses as $course) {
             // Ottieni tutti i corsisti associati al corso
@@ -44,7 +44,15 @@ class SendCourseExpirationNotification extends Command
 
             foreach ($each_customers as $customer) {
                 // Invia l'e-mail ai corsisti associati al corso
-                Mail::to($customer->email)->send(new MailForUsers($customer, $course));
+                Mail::to($customer->email)->send(new MailForCustomers($customer, $course));
+
+                // Registra l'invio dell'e-mail nel database
+                Lead::create([
+                    'name' => $customer->name,
+                    'surname' => $customer->surname,
+                    'email' => $customer->email,
+                    'description' => 'Corso in scadenza tra 8gg'
+                ]);
             }
 
             // Ottieni tutti gli amministratori della piattaforma
@@ -52,7 +60,14 @@ class SendCourseExpirationNotification extends Command
             // Invia l'e-mail agli amministratori della piattaforma
 
             foreach ($adminUsers as $adminUser) {
-                Mail::to($adminUser->email)->send(new MailForCustomers($adminUser, $course));
+                Mail::to($adminUser->email)->send(new MailForUsers($adminUser, $course));
+                // Registra l'invio dell'e-mail nel database
+                Lead::create([
+                    'name' => $adminUser->name,
+                    'surname' => $adminUser->surname,
+                    'email' => $adminUser->email,
+                    'description' => 'Corso in scadenza tra 8gg'
+                ]);
             }
         }
     }
