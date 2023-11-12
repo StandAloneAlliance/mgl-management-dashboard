@@ -34,7 +34,7 @@ class SendCourseExpirationNotification extends Command
      */
     public function handle()
     {
-        $expiry_courses = Course::whereDate('data_scadenza', Carbon::now()->subDays(8))->get();
+        $expiry_courses = Course::with('customers.user')->whereDate('data_scadenza', Carbon::now()->subDays(8))->get();
 
         foreach ($expiry_courses as $course) {
             foreach ($course->customers as $customer) {
