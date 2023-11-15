@@ -21,18 +21,25 @@
                     </div>
                 </div>
             @endif
-            <div class="col-12 mt-5">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Dettagli dei corsi di {{ $customer->name}} {{ $customer->surname }}</h3>
-                    </div>
+            <div class="col-12 mt-5 body">
+                @if (count($courses) > 0)
 
-                    <div class="card-body">
-                        @if (count($courses) > 0)
-                            {{-- mettere qui il foreach de corsi --}}
-                            @foreach ($courses as $course)
+                <div class="cards">
+                    @foreach ($courses as $course)
+                    <label id="summary">
+                        <input id="check" type="checkbox" />
+                        <article>
+                            <div class="front">
+                                @if($course->status == 'scaduto')
+                                <var style="color: '#ef4444'">{{ $course->status }}</var>
+                                @endif
+                                <var style="color: '#3b82f6'">{{ $course->status }}</var>
+                                <header>
+                                    <h2>{{ $course->nome_corso}} aut. {{ $course->numero_autorizzazione }}</h2>
+                                </header>
+                            </div>
+                            <div class="back">
                                 <ul>
-                                    <li>{{ $course->nome_corso }}</li>
                                     <li>{{ $course->genere_corso }}</li>
                                     <li>{{ $course->numero_autorizzazione }}</li>
                                     <li>N° posti: {{ $course->posti_disponibili }}</li>
@@ -46,15 +53,17 @@
                                     <li>Durata: {{ $course->durata_corso }}</li>
                                     <li>Stato: {{ $course->status }}</li>
                                     <li>Data di scadenza: {{ $course->data_scadenza }}</li>
-                                    <li>Validità: {{ $course->validità }} anni</li>                     
+                                    <li>Validità: {{ $course->validità }} anni</li> 
                                 </ul>
-                                <a href="{{ route('admin.courses.edit', ['customer_id' => $customer->id, 'course_id' => $course->id])}}" class="btn btn-success">Modifica il corso</a>
-                            @endforeach
-                        @else
-                            <h3>Nessun corso associato</h3>
-                        @endif
-                    </div>
+                                <p>More Information</p>
+                            </div>
+                        </article>
+                    </label>
+                    @endforeach
                 </div>
+                @else
+                    <h3>Nessun corso associato</h3>
+                @endif
             </div>
         </div>
     </div>

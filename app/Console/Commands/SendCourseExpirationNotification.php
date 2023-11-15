@@ -39,6 +39,9 @@ class SendCourseExpirationNotification extends Command
         $courses = Course::whereDate('data_scadenza', now()->addDays(8)->toDateString())->get();
 
         foreach ($courses as $course) {
+            // Cambio lo status del corso in 'sta per scadere'
+            $course->update(['status' => 'sta per scadere']);
+
             // Ottieni tutti i corsisti associati al corso
             $each_customers = $course->customers;
 
