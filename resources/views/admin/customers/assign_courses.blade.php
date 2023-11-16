@@ -2,7 +2,7 @@
 @section('content')
 @include('partials.sidebar')
 <div class="container">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         @if (session('error'))
             <!-- Operation not Authorized Message -->
             <div class="col-12 col-lg-6 mt-5">
@@ -22,14 +22,14 @@
             </div>
         @endif
         <div class="col-8">
-            <div class="card">
+            <div class="card my-3">
                 <div class="card-body">
                     <form action="{{ route('admin.store_courses.assign',  ['id' => $customer->id]) }}" method="POST" enctype="multipart/form-data" id="createRestaurantForm" class="card shadow bg-body-tertiary p-2">
                         @csrf
                         <!-- Card Header -->
                         <div class="card-header bg-white py-3">
                             <!-- Create Title -->
-                            <h1 class="text-center">Assegna corsi al corsista {{ $customer->name }} {{ $customer->surname}}</h1>
+                            <h1 class="text-center">Assegna corso a {{ $customer->name }} {{ $customer->surname}}</h1>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
@@ -48,25 +48,14 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <!-- Customer Surname Form Group -->
+                            <!-- Customer City Of Birth Form Group -->
                             <div class="form-group my-4">
-                                <!-- Surname Label -->
-                                <label class="control-label my-2">Posti disponibili *</label>
-                                <!-- Surname Input Text -->
-                                <input type="number" name="posti_disponibili" id="posti_disponibili" placeholder="Inserisci i posti disponibili" class="form-control @error('posti_disponibili') is-invalid @enderror" value="{{ old('posti_disponibili') }}">
-                                <!-- Surname Error Text -->
-                                @error('posti_disponibili')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <!-- Customer C.F. Form Group -->
-                            <div class="form-group my-4">
-                                <!-- Customer C.F. Label -->
-                                <label class="control-label my-2">CAP *</label>
-                                <!-- Customer C.F. Input Text -->
-                                <input type="text" name="cap_sede_corso" id="cap_sede_corso" placeholder="Inserisci il CAP dell sede del corso" class="form-control @error('cap_sede_corso') is-invalid @enderror" value="{{ old('cap_sede_corso') }}">
-                                <!-- Customer C.F. Error Text -->
-                                @error('cap_sede_corso')
+                                <!-- Customer City Of Birth Label -->
+                                <label class="control-label my-2">Indirizzo di svolgimento *</label>
+                                <!-- Customer City Of Birth Input Text -->
+                                <input type="text" name="indirizzo_di_svolgimento" id="indirizzo_di_svolgimento" placeholder="Inserisci l'indirizzo di svolgimento del corso" class="form-control @error('indirizzo_di_svolgimento') is-invalid @enderror" value="{{ old('indirizzo_di_svolgimento') }}">
+                                <!-- Customer City Of Birth Error Text -->
+                                @error('indirizzo_di_svolgimento')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -81,14 +70,14 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <!-- Customer City Of Birth Form Group -->
+                            <!-- Customer C.F. Form Group -->
                             <div class="form-group my-4">
-                                <!-- Customer City Of Birth Label -->
-                                <label class="control-label my-2">Indirizzo di svolgimento *</label>
-                                <!-- Customer City Of Birth Input Text -->
-                                <input type="text" name="indirizzo_di_svolgimento" id="indirizzo_di_svolgimento" placeholder="Inserisci l'indirizzo di svolgimento del corso" class="form-control @error('indirizzo_di_svolgimento') is-invalid @enderror" value="{{ old('indirizzo_di_svolgimento') }}">
-                                <!-- Customer City Of Birth Error Text -->
-                                @error('indirizzo_di_svolgimento')
+                                <!-- Customer C.F. Label -->
+                                <label class="control-label my-2">CAP *</label>
+                                <!-- Customer C.F. Input Text -->
+                                <input type="text" name="cap_sede_corso" id="cap_sede_corso" placeholder="Inserisci il CAP dell sede del corso" class="form-control @error('cap_sede_corso') is-invalid @enderror" value="{{ old('cap_sede_corso') }}">
+                                <!-- Customer C.F. Error Text -->
+                                @error('cap_sede_corso')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -97,12 +86,12 @@
                                 <!-- Customer Date Of Birth Label -->
                                 <label class="control-label my-2">Provincia *</label>
                                 <!-- Customer Date Of Birth Input File -->
-                                <input type="text" name="provincia" id="provincia" class="form-control @error('provincia') is-invalid @enderror" value="{{ old('provincia')}}">
+                                <input type="text" name="provincia" id="provincia" class="form-control @error('provincia') is-invalid @enderror" value="{{ old('provincia')}}" placeholder="Inserisci la provincia della sede del corso">
                                 <!-- Customer Date Of Birth Error Text -->
                                 @error('provincia')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div>                                                                                                            
                             <!-- Customer Task Form Group -->
                             <div class="form-group my-4">
                                 <!-- Customer Task Of Birth Label -->
@@ -116,7 +105,7 @@
                             </div>
                             <div class="form-group my-4">
                                 <!-- Customer Task Of Birth Label -->
-                                <label class="control-label my-2">Docenti corso *</label>
+                                <label class="control-label my-2">Docente corso *</label>
                                 <!-- Customer Task Input Text -->
                                 <input type="text" name="docenti_corso" id="docenti_corso" placeholder="Inserisci il docente" class="form-control @error('docenti_corso') is-invalid @enderror" value="{{ old('docenti_corso') }}">
                                 <!-- Customer Task Error Text -->
@@ -152,8 +141,8 @@
                                 <!-- Customer Task Input Text -->
                                 <select class="form-select" name="genere_corso" id="genere_corso">
                                     <option value="Seleziona un genere" selected>Seleziona un genere</option>
-                                    <option value="1">D.Lgs 81/2008</option>
-                                    <option value="2">Aggiornamento</option>
+                                    <option value="D.Lgs 81/2008">D.Lgs 81/2008</option>
+                                    <option value="Aggiornamento">Aggiornamento</option>
                                     <option value="3">/da mettere un altro genere/</option>
                                     <option value="4">/da mettere un altro genere/</option>
                                 </select>
@@ -172,6 +161,17 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <!-- Customer Surname Form Group -->
+                            <div class="form-group my-4">
+                                <!-- Surname Label -->
+                                <label class="control-label my-2">Posti disponibili *</label>
+                                <!-- Surname Input Text -->
+                                <input type="number" name="posti_disponibili" id="posti_disponibili" placeholder="Inserisci i posti disponibili" class="form-control @error('posti_disponibili') is-invalid @enderror" value="{{ old('posti_disponibili') }}">
+                                <!-- Surname Error Text -->
+                                @error('posti_disponibili')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>  
                             <div class="form-group my-4">
                                 <!-- Customer Task Of Birth Label -->
                                 <label class="control-label my-2">Durata corso *</label>

@@ -2,7 +2,7 @@
 @section('content')
 @include('partials.sidebar')
 <div class="container">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         @if (session('error'))
             <!-- Operation not Authorized Message -->
             <div class="col-12 col-lg-6 mt-5">
@@ -22,7 +22,7 @@
             </div>
         @endif
         <div class="col-8">
-            <div class="card">
+            <div class="card my-3">
                 <div class="card-body">
                     <form action="{{ route('admin.customers.update', $customer) }}" method="POST" enctype="multipart/form-data" id="createRestaurantForm" class="card shadow bg-body-tertiary p-2">
                         @csrf
@@ -70,7 +70,7 @@
                             <!-- Customer Email Form Group -->
                             <div class="form-group my-4">
                                 <!-- Email Label -->
-                                <label class="control-label my-2">Email</label>
+                                <label class="control-label my-2">Email *</label>
                                 <!-- Email Input Text -->
                                 <input type="email" name="email" id="email" placeholder="Inserisci l'email del corsista" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') ?? $customer->email}}">
                                 <!-- Email Error Text -->

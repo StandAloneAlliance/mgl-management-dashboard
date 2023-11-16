@@ -30,32 +30,37 @@
                         <input id="check" type="checkbox" />
                         <article>
                             <div class="front">
-                                @if($course->status == 'scaduto')
+                                {{-- @if($course->status == 'scaduto')
                                 <var style="color: '#ef4444'">{{ $course->status }}</var>
-                                @endif
+                                @else
                                 <var style="color: '#3b82f6'">{{ $course->status }}</var>
+                                @endif --}}
                                 <header>
                                     <h2>{{ $course->nome_corso}} aut. {{ $course->numero_autorizzazione }}</h2>
                                 </header>
                             </div>
                             <div class="back">
-                                <ul>
-                                    <li>{{ $course->genere_corso }}</li>
-                                    <li>{{ $course->numero_autorizzazione }}</li>
-                                    <li>N° posti: {{ $course->posti_disponibili }}</li>
-                                    <li>CAP: {{ $course->cap_sede_corso }}</li>
-                                    <li>Città: {{ $course->città_di_svolgimento }} ({{ $course->provincia }})</li>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <strong>{{ $course->genere_corso }}</strong>
+                                    </li>
+                                    <li>Aut. {{ $course->numero_autorizzazione }}</li>
+                                    <li>N° partecipanti: <strong>{{ $course->posti_disponibili }}</strong></li>
+                                    <li>Città: {{ $course->cap_sede_corso }}, {{ $course->città_di_svolgimento }} ({{ $course->provincia }})</li>
                                     <li>Sede: {{ $course->indirizzo_di_svolgimento }}</li>
-                                    <li>Direttore: {{ $course->direttore_corso }}</li>
-                                    <li>Docente: {{ $course->docenti_corso }}</li>
+                                    <li>Direttore: <strong>{{ $course->direttore_corso }}</strong></li>
+                                    <li>Docente: <strong>{{ $course->docenti_corso }}</strong></li>
                                     <li>Data Inizio: {{ $course->inizio_di_svolgimento }}</li>
                                     <li>Data Termine: {{ $course->fine_svolgimento }}</li>
-                                    <li>Durata: {{ $course->durata_corso }}</li>
-                                    <li>Stato: {{ $course->status }}</li>
-                                    <li>Data di scadenza: {{ $course->data_scadenza }}</li>
+                                    <li>Durata: {{ $course->durata_corso }} ore</li>
                                     <li>Validità: {{ $course->validità }} anni</li> 
+                                    <li>Data di scadenza: {{ $course->data_scadenza }}</li>
+                                    @if ($course->status == 'scaduto')
+                                    <li>Stato: <strong style="color: rgb(237, 31, 31)">{{ $course->status }}</strong></li>          
+                                    @else
+                                    <li>Stato: <strong>{{ $course->status }}</strong></li>    
+                                    @endif
                                 </ul>
-                                <p>More Information</p>
                             </div>
                         </article>
                     </label>

@@ -484,11 +484,7 @@ body.collapsed .expand-btn .show {
 // CARD DEI CORSI
 .body {
     margin: 0;
-    height: 100vh;
-    display: grid;
-    place-items: center;
     background: #f1f5f9;
-    color: #1e293b;
 }
 
 
@@ -524,7 +520,7 @@ header {
 }
 
 article header h2 {
-    font-size: 15px;
+    font-size: 25px;
     width: 100%;
     text-align: center;
 }
