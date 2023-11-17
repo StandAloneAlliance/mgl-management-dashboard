@@ -30,11 +30,6 @@
                         <input id="check" type="checkbox" />
                         <article>
                             <div class="front">
-                                {{-- @if($course->status == 'scaduto')
-                                <var style="color: '#ef4444'">{{ $course->status }}</var>
-                                @else
-                                <var style="color: '#3b82f6'">{{ $course->status }}</var>
-                                @endif --}}
                                 <header>
                                     <h2>{{ $course->nome_corso}} aut. {{ $course->numero_autorizzazione }}</h2>
                                 </header>
@@ -61,6 +56,7 @@
                                     <li>Stato: <strong>{{ $course->status }}</strong></li>    
                                     @endif
                                 </ul>
+                                <a href="{{ route('admin.courses.edit', ['customer_id' => $customer->id, 'course_id' => $course->id])}}">Modifica il corso</a>
                             </div>
                         </article>
                     </label>
