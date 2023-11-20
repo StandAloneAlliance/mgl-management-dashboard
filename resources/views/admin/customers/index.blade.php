@@ -22,12 +22,12 @@
                     </div>
                 </div>
             @endif
-            <div class="col-10 d-flex justify-content-center my-5">
+            <div class="col-10 d-flex justify-content-center my-5 responsive-col">
                 <div class="col-2">
-                    <a href="{{ route('admin.customers.create')}}" class="btn btn-sm btn-primary mx-3">Aggiungi corsista</a>
+                    <a href="{{ route('admin.customers.create')}}" class="btn btn-sm btn-primary mx-3 btn-responsive">Aggiungi corsista</a>
                 </div>
                 <div class="col-8">
-                    <form action="{{ route('admin.customers.index')}}" method="GET" class="input-group d-flex">
+                    <form action="{{ route('admin.customers.index')}}" method="GET" class="input-group d-flex responsive-search">
                         @csrf
                         <input type="text" class="form-control ms-3" name="keyword" placeholder="Cerca per nome">
                         <input type="text" class="form-control ms-3" name="surname" placeholder="Cerca per cognome">
@@ -39,8 +39,8 @@
                 </div>
             </div>
 
-            <div class="col-8">
-                <table class="table table-striped shadow bg-body-tertiary">
+            <div class="col-lg-8 col-md-9 col-sm-6 col-12 table-responsive">
+                <table class="table align-middle table-striped shadow bg-body-tertiary">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">Foto</th>
