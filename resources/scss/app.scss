@@ -331,16 +331,18 @@ body.collapsed .expand-btn .show {
     }
 }
 
-.container-register {
-    display: grid;
-    place-items: center;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+.bg-container-register {
     background-image: url('../images/bg-image.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: reg 6s infinite alternate linear;
+}
+
+.container-register {
+    display: grid;
+    place-items: center;
+    margin-left: 250px;
+    margin-right: 250px;
 }
 
 .register-card {
@@ -397,17 +399,6 @@ body.collapsed .expand-btn .show {
     font-weight: 600;
 }
 
-@media (width >=500px) {
-    .container-register {
-        padding: 0;
-    }
-
-    .register-card {
-        margin: 0;
-        width: 1300px;
-    }
-}
-
 #bars {
     display: flex;
     align-items: center;
@@ -439,6 +430,18 @@ body.collapsed .expand-btn .show {
 #bars.strong div {
     background: #1eb965;
     width: 100%;
+}
+
+@media screen and (max-width: 990px) {
+    .container-register {
+        max-width: 600px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-group {
+        max-width: 500px;
+    }
 }
 
 // END REGISTER FORM
