@@ -22,7 +22,7 @@
                     </div>
                 </div>
             @endif
-            <div class="col-10 d-flex justify-content-center my-5 responsive-col">
+            <div class="col-10 d-flex justify-content-center my-5 responsive-col table-size">
                 <div class="col-2">
                     <a href="{{ route('admin.customers.create')}}" class="btn btn-sm btn-primary mx-3 btn-responsive">Aggiungi corsista</a>
                 </div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 col-md-9 col-sm-6 col-12 table-responsive table-size">
+            <div class="col-lg-8 col-md-9 col-sm-6 col-12 table-size">
                 <table class="table align-middle table-striped shadow bg-body-tertiary">
                     <thead>
                         <tr class="text-center">
