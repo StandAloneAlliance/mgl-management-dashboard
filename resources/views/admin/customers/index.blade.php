@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 col-md-9 col-sm-6 col-12 table-responsive">
+            <div class="col-lg-8 col-md-9 col-sm-6 col-12 table-responsive table-size">
                 <table class="table align-middle table-striped shadow bg-body-tertiary">
                     <thead>
                         <tr class="text-center">

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File; // Import the File facade
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Log; // Import the Log facade
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -42,7 +43,9 @@ class DashboardController extends Controller
                             'user_id' => auth()->id() ?? 'guest',
                         ]);
         }
+
+        $user = auth()->user();
         
-        return view('admin.dashboard', ['htmlContent' => $htmlContent]);
+        return view('admin.dashboard', ['htmlContent' => $htmlContent], compact('user'));
     }
 }
