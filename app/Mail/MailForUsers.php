@@ -14,15 +14,17 @@ class MailForUsers extends Mailable
     use Queueable, SerializesModels;
 
     public $lead;
+    public $course;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($lead)
+    public function __construct($lead, $course)
     {
         $this->lead = $lead;
+        $this->course = $course;
     }
 
     /**
@@ -43,11 +45,9 @@ class MailForUsers extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    public function content()
+    public function build()
     {
-        return new Content(
-            view: 'mails.mail_for_users',
-        );
+        return $this->view('mails.mail_for_users')->with(['course' => $this->course, 'customers' => $this->course->customers, 'lead' => $this->lead]); 
     }
 
     /**

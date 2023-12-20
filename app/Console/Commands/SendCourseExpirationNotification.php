@@ -10,7 +10,6 @@ use App\Models\Lead;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailForUsers;
-use App\Mail\MailForCustomers;
 
 class SendCourseExpirationNotification extends Command
 {
@@ -40,22 +39,8 @@ class SendCourseExpirationNotification extends Command
 
         foreach ($courses as $course) {
             // Cambio lo status del corso in 'sta per scadere'
-            $course->update(['status' => 'sta per scadere']);
+            $course->update(['status' => 'In Scadenza']);
 
-            // Ottieni tutti i corsisti associati al corso
-            $each_customers = $course->customers;
-
-            foreach ($each_customers as $customer) {
-                // Invia l'e-mail ai corsisti associati al corso
-                Mail::to($customer->email)->send(new MailForCustomers($customer, $course));
-
-                // Registra l'invio dell'e-mail nel database
-                Lead::create([
-                    'name' => $customer->name,
-                    'surname' => $customer->surname,
-                    'email' => $customer->email,
-                    'description' => 'Corso in scadenza tra 8gg'
-                ]);
             }
 
             // Ottieni tutti gli amministratori della piattaforma
@@ -63,7 +48,7 @@ class SendCourseExpirationNotification extends Command
             // Invia l'e-mail agli amministratori della piattaforma
 
             foreach ($adminUsers as $adminUser) {
-                Mail::to($adminUser->email)->send(new MailForUsers($adminUser, $course));
+                Mail::to('info@mglconsultingsrls.it')->send(new MailForUsers($adminUser, $course));
                 // Registra l'invio dell'e-mail nel database
                 Lead::create([
                     'name' => $adminUser->name,
@@ -74,4 +59,4 @@ class SendCourseExpirationNotification extends Command
             }
         }
     }
-}
+

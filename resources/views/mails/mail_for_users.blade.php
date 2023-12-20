@@ -1,7 +1,20 @@
-<h1>Hai ricevuto un nuovo ordine su Deliveboo!</h1>
-<p>
+<h1>Informazioni del Corso</h1>
+    <p>Status: {{ $course->status }}</p>
+    <p>Data di Scadenza: {{ $course->data_scadenza }}</p>
+    <!-- Altre informazioni del corso qui -->
 
-    {{ $lead->name }} {{ $lead->surname }} sta per scadere un corso, 
-    avvisa il corsista per un aggiornamento prima che scada
+    <h2>Corsisti Associati</h2>
+    @foreach ($customers as $customer)
+        <p>Nome: {{ $customer->name }}</p>
+        <p>Cognome: {{ $customer->surname }}</p>
+        <p>Email: {{ $customer->email }}</p>
+        <!-- Altre informazioni del corsista qui -->
+    @endforeach
 
-</p>
+    <h2>Informazioni Utente</h2>
+    <p>Nome: {{ $lead->name }}</p>
+    <p>Cognome: {{ $lead->surname }}</p>
+    <p>Email: {{ $lead->email }}</p>
+    <!-- Altre informazioni del corsista qui -->
+
+    <p>Grazie per la tua partecipazione al corso!</p>

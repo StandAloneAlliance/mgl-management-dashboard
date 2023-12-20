@@ -26,16 +26,11 @@ body {
     height: 100%;
 }
 
-html {
-    height: 100%;
-}
-
 .sidebar {
     position: sticky;
     top: 0;
     left: 0;
-    min-height: 860px;
-    height: 100%;
+    height: 100vh;
     width: 18rem;
     padding: 16px 10px;
     display: flex;
@@ -489,6 +484,7 @@ body.collapsed .expand-btn .show {
 .body {
     margin: 0;
     background: #f1f5f9;
+    position: relative;
 }
 
 
@@ -501,7 +497,9 @@ h4 {
 
 .cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
+    position: absolute;
 }
 
 article {
@@ -588,4 +586,15 @@ article p {
 .table-size {
     width: 100%;
     table-layout: fixed;
+}
+
+@media screen and (max-width: 767px) {
+    .table-size {
+        overflow-x: auto;
+    }
+
+    .table-size th,
+    .tablesize td {
+        white-space: nowrap;
+    }
 }
