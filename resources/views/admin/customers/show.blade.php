@@ -45,15 +45,17 @@
                                     <li>Sede: {{ $course->indirizzo_di_svolgimento }}</li>
                                     <li>Direttore: <strong>{{ $course->direttore_corso }}</strong></li>
                                     <li>Docente: <strong>{{ $course->docenti_corso }}</strong></li>
-                                    <li>Data Inizio: {{ $course->inizio_di_svolgimento }}</li>
-                                    <li>Data Termine: {{ $course->fine_svolgimento }}</li>
+                                    <li>Data Inizio: {{ $formatted_start_date }}</li>
+                                    <li>Data Termine: {{ $formatted_end_date }}</li>
                                     <li>Durata: {{ $course->durata_corso }} ore</li>
                                     <li>Validità: {{ $course->validità }} anni</li> 
-                                    <li>Data di scadenza: {{ $course->data_scadenza }}</li>
-                                    @if ($course->status == 'scaduto')
-                                    <li>Stato: <strong style="color: rgb(237, 31, 31)">{{ $course->status }}</strong></li>          
+                                    <li>Data di scadenza: {{ $formatted_expiry_date }}</li>
+                                    @if ($course->status === 'Scaduto')
+                                        <li>Stato: <strong style="color: rgb(237, 31, 31)">{{ $course->status }}</strong></li>          
+                                    @elseif($course->status === 'In Scadenza')
+                                        <li>Stato: <strong style="color: rgb(237, 107, 31)">{{ $course->status }}</strong></li>
                                     @else
-                                    <li>Stato: <strong>{{ $course->status }}</strong></li>    
+                                        <li>Stato: <strong>{{ $course->status }}</strong></li>
                                     @endif
                                 </ul>
                                 <a href="{{ route('admin.courses.edit', ['customer_id' => $customer->id, 'course_id' => $course->id])}}">Modifica il corso</a>

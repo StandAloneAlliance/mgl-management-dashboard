@@ -113,13 +113,16 @@
                             </div>
                             <!-- Genere corso -->
                             <div class="form-group my-4">
-                                <label class="control-label my-2">Genere corso *</label>
+                                <label class="control-label my-2">Categoria corso *</label>
                                 <select class="form-select" name="genere_corso" id="genere_corso" required>
-                                    <option value="" selected>Seleziona un genere</option>
-                                    <option value="D.Lgs 81/2008">D.Lgs 81/2008</option>
+                                    <option value="" selected>Seleziona una categoria</option>
                                     <option value="Aggiornamento">Aggiornamento</option>
-                                    <option value="3">/da mettere un altro genere/</option>
-                                    <option value="4">/da mettere un altro genere/</option>
+                                    <option value="Coordinatore">Coordinatore</option>
+                                    <option value="Crediti Formativi Professionali">Crediti Formativi Professionali</option>
+                                    <option value="D.Lgs. 81/08">D.Lgs. 81/08</option>
+                                    <option value="HACCP">HACCP</option>
+                                    <option value="Master">Master</option>
+                                    <option value="Privacy">Privacy</option>
                                 </select>
                                 @error('genere_corso')
                                 <div class="text-danger">{{ $message }}</div>
