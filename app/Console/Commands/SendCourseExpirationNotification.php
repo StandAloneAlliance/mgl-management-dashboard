@@ -41,22 +41,22 @@ class SendCourseExpirationNotification extends Command
             // Cambio lo status del corso in 'sta per scadere'
             $course->update(['status' => 'In Scadenza']);
 
-            }
-
             // Ottieni tutti gli amministratori della piattaforma
             $adminUsers = User::all();
             // Invia l'e-mail agli amministratori della piattaforma
 
-            foreach ($adminUsers as $adminUser) {
-                Mail::to('info@mglconsultingsrls.it')->send(new MailForUsers($adminUser, $course));
-                // Registra l'invio dell'e-mail nel database
-                Lead::create([
-                    'name' => $adminUser->name,
-                    'surname' => $adminUser->surname,
-                    'email' => $adminUser->email,
-                    'description' => 'Corso in scadenza tra 8gg'
-                ]);
+                foreach ($adminUsers as $adminUser) {
+                    Mail::to('info@mglconsultingsrls.it')->send(new MailForUsers($adminUser, $course));
+                    // Registra l'invio dell'e-mail nel database
+                    Lead::create([
+                        'name' => $adminUser->name,
+                        'surname' => $adminUser->surname,
+                        'email' => $adminUser->email,
+                        'description' => 'Corso in scadenza tra 8gg'
+                    ]);
+                }
             }
+
         }
     }
 
