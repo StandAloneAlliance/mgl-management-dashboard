@@ -37,9 +37,6 @@
                             <div class="back">
                                 <ul class="list-unstyled">
                                     <li>
-                                        <strong>{{ $course->nome_corso }}</strong>
-                                    </li>
-                                    <li>
                                         <strong>{{ $course->genere_corso }}</strong>
                                     </li>
                                     <li>Aut. {{ $course->numero_autorizzazione }}</li>
