@@ -16,7 +16,8 @@
     @endforeach
 
     <h2>Corso:</h2>
-    <p>Corso: {{ $course->genere_corso }} aut. {{ $course->numero_autorizzazione }}</p>
+    <p>Corso: {{ $course->nome_corso }} aut. {{ $course->numero_autorizzazione }}</p>
+    <p>Genere corso: {{ $course->genere_corso }}</p>
     <p>Città: {{ $course->cap_sede_corso }}, {{ $course->città_di_svolgimento }} ({{ $course->provincia }})</p>
     <p>Sede: {{ $course->indirizzo_di_svolgimento }}</p>
     <p>Direttore: <strong>{{ $course->direttore_corso }}</strong></p>

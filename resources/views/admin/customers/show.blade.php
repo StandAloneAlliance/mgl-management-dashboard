@@ -37,6 +37,9 @@
                             <div class="back">
                                 <ul class="list-unstyled">
                                     <li>
+                                        <strong>{{ $course->nome_corso }}</strong>
+                                    </li>
+                                    <li>
                                         <strong>{{ $course->genere_corso }}</strong>
                                     </li>
                                     <li>Aut. {{ $course->numero_autorizzazione }}</li>
@@ -54,8 +57,8 @@
                                         <li>Stato: <strong style="color: rgb(237, 31, 31)">{{ $course->status }}</strong></li>          
                                     @elseif($course->status === 'In Scadenza')
                                         <li>Stato: <strong style="color: rgb(237, 107, 31)">{{ $course->status }}</strong></li>
-                                    @else
-                                        <li>Stato: <strong>{{ $course->status }}</strong></li>
+                                    @elseif($course->status === 'Valido')
+                                        <li>Stato: <strong style="color: rgb(19, 184, 4)">{{ $course->status }}</strong></li>
                                     @endif
                                 </ul>
                                 <a href="{{ route('admin.courses.edit', ['customer_id' => $customer->id, 'course_id' => $course->id])}}">Modifica il corso</a>

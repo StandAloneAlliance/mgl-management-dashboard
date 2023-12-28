@@ -163,7 +163,7 @@
                                 <!-- Surname Label -->
                                 <label class="control-label my-2">Validità *</label>
                                 <!-- Surname Input Text -->
-                                <input type="number" name="validità" id="validità" placeholder="Inserisci i posti disponibili" class="form-control @error('validità') is-invalid @enderror" value="{{ old('validità') }}" required>
+                                <input type="number" name="validità" id="validità" placeholder="Inserisci la validità" class="form-control @error('validità') is-invalid @enderror" value="{{ old('validità') }}" required>
                                 <!-- Surname Error Text -->
                                 @error('validità')
                                 <div class="text-danger">{{ $message }}</div>
