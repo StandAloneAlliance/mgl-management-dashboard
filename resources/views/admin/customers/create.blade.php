@@ -2,7 +2,7 @@
 @section('content')
 @include('partials.sidebar')
 <div class="container">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         @if (session('error'))
             <!-- Operation not Authorized Message -->
             <div class="col-12 col-lg-6 mt-5">
@@ -22,7 +22,7 @@
             </div>
         @endif
         <div class="col-8">
-            <div class="card">
+            <div class="card my-3">
                 <div class="card-body">
                     <form action="{{ route('admin.customers.store') }}" method="POST" enctype="multipart/form-data" id="createRestaurantForm" class="card shadow bg-body-tertiary p-2">
                         @csrf
@@ -60,7 +60,7 @@
                                 <!-- Customer C.F. Label -->
                                 <label class="control-label my-2">Codice Fiscale *</label>
                                 <!-- Customer C.F. Input Text -->
-                                <input type="text" name="cfr" id="cfr" placeholder="Inserisci il codice fiscale del corsista" class="form-control @error('cfr') is-invalid @enderror" value="{{ old('cfr') }}"  minlength="16" maxlength="16" required>
+                                <input type="text" name="cfr" id="cfr" placeholder="Inserisci il codice fiscale del corsista" class="form-control @error('cfr') is-invalid @enderror" value="{{ old('cfr') }}" minlength="16" maxlength="16" required>
                                 <!-- Customer C.F. Error Text -->
                                 @error('cfr')
                                 <div class="text-danger">{{ $message }}</div>
@@ -71,7 +71,7 @@
                                 <!-- Email Label -->
                                 <label class="control-label my-2">Email</label>
                                 <!-- Email Input Text -->
-                                <input type="email" name="email" id="email" placeholder="Inserisci l'email del corsista" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
+                                <input type="email" name="email" id="email" placeholder="Inserisci l'email del corsista" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                                 <!-- Email Error Text -->
                                 @error('email')
                                 <div class="text-danger">{{ $message }}</div>
@@ -82,7 +82,7 @@
                                 <!-- Customer City Of Birth Label -->
                                 <label class="control-label my-2">Città di nascita *</label>
                                 <!-- Customer City Of Birth Input Text -->
-                                <input type="text" name="city_of_birth" id="city_of_birth" placeholder="Inserisci il cognome del corsista" class="form-control @error('city_of_birth') is-invalid @enderror" value="{{ old('city_of_birth') }}" maxlength="50" required>
+                                <input type="text" name="city_of_birth" id="city_of_birth" placeholder="Inserisci la città di nascita del corsista" class="form-control @error('city_of_birth') is-invalid @enderror" value="{{ old('city_of_birth') }}" maxlength="60" required>
                                 <!-- Customer City Of Birth Error Text -->
                                 @error('city_of_birth')
                                 <div class="text-danger">{{ $message }}</div>
@@ -104,7 +104,7 @@
                                 <!-- Customer Task Of Birth Label -->
                                 <label class="control-label my-2">Mansione</label>
                                 <!-- Customer Task Input Text -->
-                                <input type="text" name="task" id="task" placeholder="Inserisci il cognome del corsista" class="form-control @error('task') is-invalid @enderror" value="{{ old('task') }}" maxlength="50">
+                                <input type="text" name="task" id="task" placeholder="Inserisci il cognome del corsista" class="form-control @error('task') is-invalid @enderror" value="{{ old('task') }}" maxlength="70">
                                 <!-- Customer Task Error Text -->
                                 @error('task')
                                 <div class="text-danger">{{ $message }}</div>

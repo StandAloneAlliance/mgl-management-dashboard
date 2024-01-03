@@ -21,40 +21,52 @@
                     </div>
                 </div>
             @endif
-            <div class="col-12 mt-5">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Dettagli dei corsi di {{ $customer->name}} {{ $customer->surname }}</h3>
-                    </div>
+            <div class="col-12 mt-5 body">
+                @if (count($courses) > 0)
 
-                    <div class="card-body">
-                        @if (count($courses) > 0)
-                            {{-- mettere qui il foreach de corsi --}}
-                            @foreach ($courses as $course)
-                                <ul>
-                                    <li>{{ $course->nome_corso }}</li>
-                                    <li>{{ $course->genere_corso }}</li>
-                                    <li>{{ $course->numero_autorizzazione }}</li>
-                                    <li>N° posti: {{ $course->posti_disponibili }}</li>
-                                    <li>CAP: {{ $course->cap_sede_corso }}</li>
-                                    <li>Città: {{ $course->città_di_svolgimento }} ({{ $course->provincia }})</li>
+                <div class="cards">
+                    @foreach ($courses as $course)
+                    <label id="summary">
+                        <input id="check" type="checkbox" />
+                        <article>
+                            <div class="front">
+                                <header>
+                                    <h2>{{ $course->nome_corso}} aut. {{ $course->numero_autorizzazione }}</h2>
+                                </header>
+                            </div>
+                            <div class="back">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <strong>{{ $course->genere_corso }}</strong>
+                                    </li>
+                                    <li>Aut. {{ $course->numero_autorizzazione }}</li>
+                                    <li>N° partecipanti: <strong>{{ $course->posti_disponibili }}</strong></li>
+                                    <li>Città: {{ $course->cap_sede_corso }}, {{ $course->città_di_svolgimento }} ({{ $course->provincia }})</li>
                                     <li>Sede: {{ $course->indirizzo_di_svolgimento }}</li>
-                                    <li>Direttore: {{ $course->direttore_corso }}</li>
-                                    <li>Docente: {{ $course->docenti_corso }}</li>
-                                    <li>Data Inizio: {{ $course->inizio_di_svolgimento }}</li>
-                                    <li>Data Termine: {{ $course->fine_svolgimento }}</li>
-                                    <li>Durata: {{ $course->durata_corso }}</li>
-                                    <li>Stato: {{ $course->status }}</li>
-                                    <li>Data di scadenza: {{ $course->data_scadenza }}</li>
-                                    <li>Validità: {{ $course->validità }} anni</li>                     
+                                    <li>Direttore: <strong>{{ $course->direttore_corso }}</strong></li>
+                                    <li>Docente: <strong>{{ $course->docenti_corso }}</strong></li>
+                                    <li>Data Inizio: {{ $formatted_start_date }}</li>
+                                    <li>Data Termine: {{ $formatted_end_date }}</li>
+                                    <li>Durata: {{ $course->durata_corso }} ore</li>
+                                    <li>Validità: {{ $course->validità }} anni</li> 
+                                    <li>Data di scadenza: {{ $formatted_expiry_date }}</li>
+                                    @if ($course->status === 'Scaduto')
+                                        <li>Stato: <strong style="color: rgb(237, 31, 31)">{{ $course->status }}</strong></li>          
+                                    @elseif($course->status === 'In Scadenza')
+                                        <li>Stato: <strong style="color: rgb(237, 107, 31)">{{ $course->status }}</strong></li>
+                                    @elseif($course->status === 'Valido')
+                                        <li>Stato: <strong style="color: rgb(19, 184, 4)">{{ $course->status }}</strong></li>
+                                    @endif
                                 </ul>
-                                <a href="{{ route('admin.courses.edit', ['customer_id' => $customer->id, 'course_id' => $course->id])}}" class="btn btn-success">Modifica il corso</a>
-                            @endforeach
-                        @else
-                            <h3>Nessun corso associato</h3>
-                        @endif
-                    </div>
+                                <a href="{{ route('admin.courses.edit', ['customer_id' => $customer->id, 'course_id' => $course->id])}}">Modifica il corso</a>
+                            </div>
+                        </article>
+                    </label>
+                    @endforeach
                 </div>
+                @else
+                    <h3>Nessun corso associato</h3>
+                @endif
             </div>
         </div>
     </div>

@@ -21,9 +21,9 @@
                                 <label class="control-label my-2">Modifica la validità del corso *</label>
                                 <!-- Name Input Text -->
                                 <select name="status" class="w-50">
-                                    <option class="w-50">Valido</option>
-                                    <option class="w-50">In Scadenza</option>
-                                    <option class="w-50">Scaduto</option>
+                                    <option class="w-50" value="Valido">Valido</option>
+                                    <option class="w-50" value="In Scadenza">In Scadenza</option>
+                                    <option class="w-50" value="Scaduto">Scaduto</option>
                                 </select>
                                 <!-- Name Error Text -->
                                 @error('status')

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('genere_corso', 25);
             $table->string('numero_autorizzazione');
             $table->integer('durata_corso');
-            $table->string('status')->default('valido');
+            $table->string('status')->default('Valido');
             $table->date('data_scadenza')->format('d/m/Y');
             $table->integer('validità');
             $table->timestamps();

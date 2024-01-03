@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Course;
 use App\Models\User;
+use Carbon\Carbon;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Requests\StoreCourseRequest;
@@ -116,7 +117,12 @@ class CustomerController extends Controller
 
         if($customer && $customer->courses()->exists()){
             $courses = $customer->courses;
-            return view('admin.customers.show', compact('customer', 'courses'));
+            foreach($courses as $course){
+                $formatted_start_date = Carbon::parse($course->inizio_di_svolgimento)->format('d-m-Y');
+                $formatted_end_date = Carbon::parse($course->fine_svolgimento)->format('d-m-Y');         
+                $formatted_expiry_date = Carbon::parse($course->data_scadenza)->format('d-m-Y');       
+            }
+            return view('admin.customers.show', compact('customer', 'courses', 'formatted_start_date', 'formatted_end_date', 'formatted_expiry_date'));
         } else {
             return redirect()->back()->with('error', 'Operazione non autorizzata');
 

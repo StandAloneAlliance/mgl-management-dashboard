@@ -6,6 +6,10 @@ use Illuminate\Console\Command;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Customers;
+use App\Models\Lead;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailForUsers;
 
 class SendCourseExpirationNotification extends Command
 {
@@ -30,16 +34,29 @@ class SendCourseExpirationNotification extends Command
      */
     public function handle()
     {
-        $expiry_courses = Course::whereDate('data_scadenza', Carbon::now()->subDays(8))->get();
+       // Ottieni tutti i corsi che sono in scadenza esattamente 8 giorni dopo la data attuale
+        $courses = Course::whereDate('data_scadenza', now()->addDays(8)->toDateString())->get();
 
-        foreach ($expiry_courses as $course) {
-            foreach ($course->customers as $customer) {
-                $user = $customer->user;
+        foreach ($courses as $course) {
+            // Cambio lo status del corso in 'sta per scadere'
+            $course->update(['status' => 'In Scadenza']);
 
-                if ($user) {
-                    
+            // Ottieni tutti gli amministratori della piattaforma
+            $adminUsers = User::all();
+            // Invia l'e-mail agli amministratori della piattaforma
+
+                foreach ($adminUsers as $adminUser) {
+                    Mail::to('info@mglconsultingsrls.it')->send(new MailForUsers($adminUser, $course));
+                    // Registra l'invio dell'e-mail nel database
+                    Lead::create([
+                        'name' => $adminUser->name,
+                        'surname' => $adminUser->surname,
+                        'email' => $adminUser->email,
+                        'description' => 'Corso in scadenza tra 8gg'
+                    ]);
                 }
             }
+
         }
     }
-}
+

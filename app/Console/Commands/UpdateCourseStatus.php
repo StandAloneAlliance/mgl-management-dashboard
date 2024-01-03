@@ -35,7 +35,7 @@ class UpdateCourseStatus extends Command
 
         foreach ($courses as $course) {
             if (Carbon::now()->greaterThan($course->data_scadenza)) {
-                $course->status = 'scaduto';
+                $course->status = 'Scaduto';
                 $course->save();
             }
         }

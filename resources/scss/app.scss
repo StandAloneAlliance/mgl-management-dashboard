@@ -26,16 +26,11 @@ body {
     height: 100%;
 }
 
-html {
-    height: 100%;
-}
-
 .sidebar {
     position: sticky;
     top: 0;
     left: 0;
-    min-height: 860px;
-    height: 100%;
+    height: 100vh;
     width: 18rem;
     padding: 16px 10px;
     display: flex;
@@ -48,6 +43,7 @@ html {
 main {
     flex: 1;
     display: flex;
+    justify-content: center;
 }
 
 body.collapsed .sidebar {
@@ -318,6 +314,134 @@ body.collapsed .expand-btn .show {
 
 // END LOGIN FORM
 
+// REGISTER FORM
+
+.register-link .btn-register {
+    cursor: pointer;
+}
+
+@keyframes reg {
+    100% {
+        background-position: 15%, 50%;
+    }
+}
+
+.bg-container-register {
+    background-image: url('../images/bg-image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    animation: reg 6s infinite alternate linear;
+}
+
+.container-register {
+    display: grid;
+    place-items: center;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.register-card {
+    width: 100%;
+    padding: 20px 30px 44px;
+    border-radius: 24px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.register-card>h2 {
+    margin: 0 0 12px;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+
+.register-card>h3 {
+    margin: 0 0 30px;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.38);
+}
+
+.register-form {
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+}
+
+.register-form .register-link {
+    color: #216ce7;
+}
+
+.register-form .register-link,
+.register-form .btn-register {
+    width: 100%;
+    height: 56px;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+.register-form>input {
+    border: 2px solid #ebebeb;
+}
+
+.register-form>.register-login {
+    width: 100%;
+    height: 56px;
+    border: 0;
+    background: #216ce7;
+    color: #f9f9f9;
+    font-weight: 600;
+}
+
+#bars {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 6px;
+    width: 360px;
+    margin: 8px 0;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#bars div {
+    width: 0%;
+    height: inherit;
+    border-radius: inherit;
+    transition: 0.4s;
+}
+
+#bars.weak div {
+    background: #bc2b38;
+    width: 33.3%;
+}
+
+#bars.medium div {
+    background: #d36f30;
+    width: 66.66%;
+}
+
+#bars.strong div {
+    background: #1eb965;
+    width: 100%;
+}
+
+@media screen and (max-width: 990px) {
+    .container-register {
+        max-width: 600px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-group {
+        max-width: 500px;
+    }
+}
+
+// END REGISTER FORM
+
 .mgl-logo-img {
     width: 100px;
 }
@@ -353,5 +477,124 @@ body.collapsed .expand-btn .show {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+// CARD DEI CORSI
+.body {
+    margin: 0;
+    background: #f1f5f9;
+    position: relative;
+}
+
+
+h2,
+h3,
+h4 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    position: absolute;
+}
+
+article {
+    position: relative;
+    perspective: 1000px;
+    width: 400px;
+    height: 400px;
+}
+
+header {
+    margin-top: 50px;
+}
+
+.back ul {
+    text-align: start;
+}
+
+.header-back ul {
+    text-align: center;
+}
+
+article header h2 {
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+}
+
+article .front,
+article .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    backface-visibility: hidden;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
+    padding: 24px;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+#check {
+    position: absolute;
+    scale: 0;
+}
+
+#check:checked~article .back {
+    transform: rotateY(0);
+}
+
+#check:checked~article .front {
+    transform: rotateY(-180deg);
+}
+
+article var {
+    font-style: normal;
+    font-size: 50px;
+    line-height: 1;
+}
+
+article h3 {
+    font-weight: 500;
+}
+
+article :is(h4, p) {
+    opacity: 0.5;
+    font-size: 20px;
+}
+
+article p {
+    margin-top: 76px;
+}
+
+// RESPONSIVE TABLE
+
+.table-size {
+    width: 100%;
+    table-layout: fixed;
+}
+
+@media screen and (max-width: 767px) {
+    .table-size {
+        overflow-x: auto;
+    }
+
+    .table-size th,
+    .tablesize td {
+        white-space: nowrap;
     }
 }
