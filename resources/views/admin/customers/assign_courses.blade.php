@@ -38,7 +38,7 @@
                                 <!-- Name Label -->
                                 <label class="control-label my-2">Seleziona il corso *</label>
                                 <!-- Name Input Text -->
-                                <select class="form-select form-select-lg" name="nome_corso" class="w-100" required>
+                                <select class="form-select form-select-lg" name="nome_corso" id="select-corso" required>
                                     @foreach ($courses as $course)
                                         <option class="option-size">{{ $course }}</option>
                                     @endforeach
@@ -180,5 +180,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('select[name="nome_corso"]').select2();
+    });
+
+</script>
     
 @endsection
