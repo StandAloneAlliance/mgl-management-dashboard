@@ -22,7 +22,7 @@
             </div>
         @endif
         <!-- Card Restaurant Order Statistics -->
-        <div class="col-12 d-flex justify-content-center align-items-center bg-white my-5">
+        <div class="col-10 d-flex justify-content-center align-items-center bg-white my-5">
             <canvas id="coursesChart"></canvas>  
         </div>
     </div>

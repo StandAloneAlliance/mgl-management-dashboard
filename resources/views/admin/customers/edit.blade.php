@@ -2,7 +2,7 @@
 @section('content')
 @include('partials.sidebar')
 <div class="container">
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         @if (session('error'))
             <!-- Operation not Authorized Message -->
             <div class="col-12 col-lg-6 mt-5">
@@ -22,7 +22,7 @@
             </div>
         @endif
         <div class="col-8">
-            <div class="card">
+            <div class="card my-3">
                 <div class="card-body">
                     <form action="{{ route('admin.customers.update', $customer) }}" method="POST" enctype="multipart/form-data" id="createRestaurantForm" class="card shadow bg-body-tertiary p-2">
                         @csrf
@@ -39,7 +39,7 @@
                                 <!-- Name Label -->
                                 <label class="control-label my-2">Nome *</label>
                                 <!-- Name Input Text -->
-                                <input type="text" name="name" id="name" placeholder="Inserisci il nome del corsista" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') ?? $customer->name }}">
+                                <input type="text" name="name" id="name" placeholder="Inserisci il nome del corsista" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') ?? $customer->name }}" maxlength="60" required>
                                 <!-- Name Error Text -->
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>
@@ -50,7 +50,7 @@
                                 <!-- Surname Label -->
                                 <label class="control-label my-2">Cognome *</label>
                                 <!-- Surname Input Text -->
-                                <input type="text" name="surname" id="surname" placeholder="Inserisci il cognome del corsista" class="form-control @error('surname') is-invalid @enderror" value="{{ old('surname') ?? $customer->surname }}">
+                                <input type="text" name="surname" id="surname" placeholder="Inserisci il cognome del corsista" class="form-control @error('surname') is-invalid @enderror" value="{{ old('surname') ?? $customer->surname }}" maxlength="60" required>
                                 <!-- Surname Error Text -->
                                 @error('surname')
                                 <div class="text-danger">{{ $message }}</div>
@@ -61,7 +61,7 @@
                                 <!-- Customer C.F. Label -->
                                 <label class="control-label my-2">Codice Fiscale *</label>
                                 <!-- Customer C.F. Input Text -->
-                                <input type="text" name="cfr" id="cfr" placeholder="Inserisci il codice fiscale del corsista" class="form-control @error('cfr') is-invalid @enderror" value="{{ old('cfr') ?? $customer->cfr }}">
+                                <input type="text" name="cfr" id="cfr" placeholder="Inserisci il codice fiscale del corsista" class="form-control @error('cfr') is-invalid @enderror" value="{{ old('cfr') ?? $customer->cfr }}" minlength="16" maxlength="16" required>
                                 <!-- Customer C.F. Error Text -->
                                 @error('cfr')
                                 <div class="text-danger">{{ $message }}</div>
@@ -83,7 +83,7 @@
                                 <!-- Customer City Of Birth Label -->
                                 <label class="control-label my-2">Città di nascita *</label>
                                 <!-- Customer City Of Birth Input Text -->
-                                <input type="text" name="city_of_birth" id="city_of_birth" placeholder="Inserisci il cognome del corsista" class="form-control @error('city_of_birth') is-invalid @enderror" value="{{ old('city_of_birth') ?? $customer->city_of_birth }}">
+                                <input type="text" name="city_of_birth" id="city_of_birth" placeholder="Inserisci il cognome del corsista" class="form-control @error('city_of_birth') is-invalid @enderror" value="{{ old('city_of_birth') ?? $customer->city_of_birth }}" maxlength="60" required>
                                 <!-- Customer City Of Birth Error Text -->
                                 @error('city_of_birth')
                                 <div class="text-danger">{{ $message }}</div>
@@ -94,7 +94,7 @@
                                 <!-- Customer Date Of Birth Label -->
                                 <label class="control-label my-2">Data di nascita *</label>
                                 <!-- Customer Date Of Birth Input File -->
-                                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control @error('date_of_birth') is-invalid @enderror" value="{{ old('date_of_birth') ?? $customer->date_of_birth }}">
+                                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control @error('date_of_birth') is-invalid @enderror" value="{{ old('date_of_birth') ?? $customer->date_of_birth }}" required>
                                 <!-- Customer Date Of Birth Error Text -->
                                 @error('date_of_birth')
                                     <div class="text-danger">{{ $message }}</div>
@@ -105,7 +105,7 @@
                                 <!-- Customer Task Of Birth Label -->
                                 <label class="control-label my-2">Mansione</label>
                                 <!-- Customer Task Input Text -->
-                                <input type="text" name="task" id="task" placeholder="Inserisci il cognome del corsista" class="form-control @error('task') is-invalid @enderror" value="{{ old('task') ?? $customer->task }}">
+                                <input type="text" name="task" id="task" placeholder="Inserisci il cognome del corsista" class="form-control @error('task') is-invalid @enderror" value="{{ old('task') ?? $customer->task }}" maxlength="70">
                                 <!-- Customer Task Error Text -->
                                 @error('task')
                                 <div class="text-danger">{{ $message }}</div>
@@ -116,7 +116,7 @@
                                 <!-- Cover Image Label -->
                                 <label class="control-label my-2">Immagine del corsista</label>
                                 <!-- Cover Image Input File -->
-                                <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror">
+                                <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" accept="image/jpg, image/jpeg, image/png, image/webp">
                                 <!-- Cover Image Error Text -->
                                 @error('cover_image')
                                     <div class="text-danger">{{ $message }}</div>
