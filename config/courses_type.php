@@ -1614,5 +1614,5 @@ return[
         //"Corso di aggiornamento per R.S.P.P./A.S.P.P. - tutti i macrosettori ateco 2007 e i nuovi settori produttivi SP1, SP2, SP3 e SP4  'Verifica e manutenzione delle scaffalature'  (4 ore)",
         //"Corso di formazione per volontari impiegati nelle pubbliche manifestazioni (SAFETY &amp; SECURITY) (8 ore)",
         //"Corso di informazione, formazione e addestramento all`utilizzo dei DPI di terza categoria e guanti e mascherine",
-        //"Corso di aggiornamento per R.S.P.P./A.S.P.P. - tutti i macrosettori ateco 2007 e i nuovi settori produttivi SP1, SP2, SP3 e SP4 'Adempimenti ambientali normativa cogente di base  ed obblighi  per le aziende' (videoconferenza) (24 ore)",
+        //"Corso di aggiornamento per R.S.P.P./A.S.P.P. - tutti i macrosettori ateco 2007 e i nuovi settori produttivi SP1, SP2, SP3 e SP4 'Adempimenti ambientali normativa cogente di base  ed obblighi  per le aziende' (videoconferenza) (24 ore)", -->
     ];
